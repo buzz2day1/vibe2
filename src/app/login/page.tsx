@@ -1,97 +1,116 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTarget = searchParams.get("redirect") || "/";
+  const initialProvider = searchParams.get("provider");
 
   const [loadingProvider, setLoadingProvider] = useState<"google" | "github" | null>(null);
 
   const handleOAuthLogin = (provider: "google" | "github") => {
+    if (loadingProvider) return;
     setLoadingProvider(provider);
     toast.loading(`Connecting to ${provider === "google" ? "Google" : "GitHub"}...`, {
       id: "auth-toast",
     });
 
-    // Provide authentic interactive feedback and redirect to application workspace
+    // Authentic interactive feedback with redirect to target workspace
     setTimeout(() => {
       toast.success(`Signed in with ${provider === "google" ? "Google" : "GitHub"}. Welcome to Mavly!`, {
         id: "auth-toast",
       });
       router.push(redirectTarget);
-    }, 800);
+    }, 700);
   };
 
+  useEffect(() => {
+    if (initialProvider === "google" || initialProvider === "github") {
+      handleOAuthLogin(initialProvider);
+    }
+  }, [initialProvider]);
+
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans selection:bg-neutral-900 selection:text-white overflow-x-hidden">
-      {/* Top Navigation Bar matching reference */}
+    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans selection:bg-neutral-900 selection:text-white">
+      {/* ── Top Navigation Row ── */}
       <header className="w-full border-b border-black/[0.05] bg-white/70 backdrop-blur-md sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-          <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+          {/* Left Side: Back to Mavly */}
+          <Link
+            href="/home"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black transition-colors py-2 px-1 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+          >
+            <ArrowLeft className="w-4 h-4 text-gray-500 group-hover:text-black transition-colors" />
+            <span>Back to Mavly</span>
+          </Link>
+
+          {/* Right Side: Official Mavly Logo */}
+          <Link
+            href="/home"
+            className="flex items-center gap-2.5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 p-1 group"
+            aria-label="Mavly Home"
+          >
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
               <Image
                 src="/logo/Mavly.png"
                 alt="Mavly Logo"
-                width={28}
-                height={28}
-                className="w-full h-full object-contain rounded-md sm:rounded-lg"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain rounded-lg"
                 priority
                 referrerPolicy="no-referrer"
               />
             </div>
-            <span className="font-extrabold tracking-tight text-gray-950 text-sm sm:text-base">
+            <span className="font-extrabold tracking-tight text-gray-950 text-base hidden sm:inline-block">
               Mavly
             </span>
-          </Link>
-
-          <Link
-            href="/home"
-            className="text-xs sm:text-sm font-medium text-gray-600 hover:text-black transition-colors px-2.5 sm:px-3 py-1.5 rounded-lg hover:bg-black/5"
-          >
-            Home
           </Link>
         </div>
       </header>
 
-      {/* Main Authentication Center */}
-      <main className="flex-1 flex items-center justify-center px-3.5 sm:px-4 py-8 sm:py-16">
-        <div className="w-full max-w-[400px] bg-white rounded-2xl sm:rounded-3xl border border-black/[0.08] shadow-[0_16px_40px_rgba(0,0,0,0.04)] p-6 sm:p-9 transition-all">
-          {/* Card Header with Genuine Mavly Logo */}
-          <div className="flex flex-col items-center text-center mb-7 sm:mb-8">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl overflow-hidden bg-white shadow-sm p-1 border border-black/[0.08] flex items-center justify-center mb-3.5 sm:mb-4 transition-transform hover:scale-105 shrink-0">
+      {/* ── Central Authentication Card ── */}
+      <main className="flex-1 flex items-center justify-center px-4 py-10 sm:py-16">
+        <div className="w-full max-w-[420px] bg-white rounded-2xl sm:rounded-3xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-7 sm:p-10 transition-all">
+          {/* A. Mavly Logo at top of the card */}
+          <div className="flex flex-col items-center text-center">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden bg-white shadow-xs p-1 border border-black/[0.08] flex items-center justify-center mb-5 sm:mb-6 transition-transform hover:scale-105 duration-200 shrink-0">
               <Image
                 src="/logo/Mavly.png"
                 alt="Mavly Logo"
-                width={52}
-                height={52}
-                className="w-full h-full object-contain rounded-lg sm:rounded-xl"
+                width={56}
+                height={56}
+                className="w-full h-full object-contain rounded-xl"
                 priority
                 referrerPolicy="no-referrer"
               />
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-950">
-              Log in to Mavly
+
+            {/* B. Heading */}
+            <h1 className="text-2xl sm:text-[26px] font-bold tracking-tight text-gray-950">
+              Welcome to Mavly
             </h1>
-            <p className="mt-1.5 text-xs sm:text-sm text-gray-500 max-w-[270px]">
-              Build, iterate, and publish production-ready websites with AI.
+
+            {/* C. Supporting text */}
+            <p className="mt-2 text-xs sm:text-sm text-gray-500 font-normal max-w-[280px]">
+              Build your next product with AI.
             </p>
           </div>
 
-          {/* Social Auth Buttons */}
-          <div className="flex flex-col gap-3">
-            {/* Primary: Continue with Google (Black button per guidelines) */}
+          {/* D & E. Authentication Buttons */}
+          <div className="flex flex-col gap-3.5 mt-8">
+            {/* D. Continue with Google button */}
             <button
               type="button"
               disabled={!!loadingProvider}
               onClick={() => handleOAuthLogin("google")}
-              className="w-full h-11 px-4 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2.5 sm:gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-sm flex items-center justify-center gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
             >
               {loadingProvider === "google" ? (
                 <Loader2 className="w-4 h-4 animate-spin text-white" />
@@ -118,12 +137,12 @@ function LoginForm() {
               <span>Continue with Google</span>
             </button>
 
-            {/* Secondary: Continue with GitHub (White button with subtle border per guidelines) */}
+            {/* E. Continue with GitHub button */}
             <button
               type="button"
               disabled={!!loadingProvider}
               onClick={() => handleOAuthLogin("github")}
-              className="w-full h-11 px-4 rounded-xl bg-white hover:bg-neutral-50 text-gray-900 border border-gray-200 font-medium text-xs sm:text-sm flex items-center justify-center gap-2.5 sm:gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl bg-white hover:bg-neutral-50 text-gray-900 border border-gray-200 hover:border-gray-300 font-medium text-sm flex items-center justify-center gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
             >
               {loadingProvider === "github" ? (
                 <Loader2 className="w-4 h-4 animate-spin text-gray-900" />
@@ -140,15 +159,15 @@ function LoginForm() {
             </button>
           </div>
 
-          {/* Terms & Privacy */}
-          <div className="mt-7 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-100 text-center">
-            <p className="text-[11px] text-gray-400 leading-relaxed">
-              By continuing, you agree to Mavly&apos;s{" "}
-              <Link href="/terms" className="text-gray-600 hover:text-black underline underline-offset-2">
+          {/* Legal Notice */}
+          <div className="mt-8 pt-6 border-t border-black/[0.05] text-center">
+            <p className="text-xs text-gray-400 leading-relaxed">
+              By continuing, you agree to our{" "}
+              <Link href="/terms" className="text-gray-600 hover:text-black underline underline-offset-2 transition-colors">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-gray-600 hover:text-black underline underline-offset-2">
+              <Link href="/privacy" className="text-gray-600 hover:text-black underline underline-offset-2 transition-colors">
                 Privacy Policy
               </Link>
               .
@@ -157,9 +176,9 @@ function LoginForm() {
         </div>
       </main>
 
-      {/* Understated Minimal Footer */}
-      <footer className="w-full py-5 sm:py-6 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} Mavly. All rights reserved.
+      {/* ── Page Footer ── */}
+      <footer className="w-full py-6 text-center text-xs text-gray-400">
+        © 2026 Mavly. All rights reserved.
       </footer>
     </div>
   );

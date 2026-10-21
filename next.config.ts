@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "placeholders.io",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
     ]
   },
   // Hide the on-screen Next.js dev indicator (the bottom-left bubble shown

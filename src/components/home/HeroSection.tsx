@@ -1,171 +1,305 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+// ── Complete 19 ImageKit Assets Data Source ───────────────────────────────────
+export const HERO_SHOWCASE_ASSETS = [
+  { id: "img-01", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.05%E2%80%AFPM.png", label: "Artisanal Bakery & Bakehouse" },
+  { id: "img-02", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.47%E2%80%AFPM.png", label: "Minimalist Stationery & Goods" },
+  { id: "img-03", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.34%E2%80%AFPM.png", label: "Strategic Advisory & Consulting" },
+  { id: "img-04", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.06%E2%80%AFPM.png", label: "Sprout Botanical Boutique" },
+  { id: "img-05", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.14%E2%80%AFPM.png", label: "Certified Auto Care & Service" },
+  { id: "img-06", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.45%E2%80%AFPM.png", label: "Roy Pratt Fitness Studio" },
+  { id: "img-07", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.12.06%E2%80%AFPM.png", label: "Autonomous Electric Mobility" },
+  { id: "img-08", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.29%E2%80%AFPM.png", label: "La Perla Luxury Architecture" },
+  { id: "img-09", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.12%E2%80%AFPM.png", label: "Nimbus Commute & Impact Transit" },
+  { id: "img-10", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.04%E2%80%AFPM.png", label: "Enterprise Tech Consulting" },
+  { id: "img-11", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.16%E2%80%AFPM.png", label: "Next-Gen Fintech App" },
+  { id: "img-12", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.25%E2%80%AFPM.png", label: "Creative Agency Case Studies" },
+  { id: "img-13", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.04.59%E2%80%AFPM.png", label: "Serene Wellness & Spa Sanctuary" },
+  { id: "img-14", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.30%E2%80%AFPM.png", label: "Independent Editorial Journal" },
+  { id: "img-15", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.00%E2%80%AFPM.png", label: "Developer Cloud Tooling Platform" },
+  { id: "img-16", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.33%E2%80%AFPM.png", label: "Gourmet Tasting Room & Cellar" },
+  { id: "img-17", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.29%E2%80%AFPM.png", label: "Contemporary Fashion Lookbook" },
+  { id: "img-18", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.16%E2%80%AFPM.png", label: "Sustainable Energy Dashboard" },
+  { id: "img-19", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.53%E2%80%AFPM.png", label: "Brand Design & System Lab" },
+];
+
+interface SlotConfig {
+  id: string;
+  primaryIndex: number;
+  secondaryIndex: number;
+  desktopStyle: {
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
+    width: string;
+    zIndex: number;
+  };
+  baseRot: number; // in degrees
+  floatClass: string;
+  parallaxFactor: number;
+}
+
+// 10 spatially distributed slots that seamlessly incorporate all 19 images
+const DESKTOP_SLOTS: SlotConfig[] = [
+  // 1. Top-Left (Bakery / Fintech)
+  {
+    id: "slot-tl",
+    primaryIndex: 0, // Image 01
+    secondaryIndex: 10, // Image 11
+    desktopStyle: { top: "-10px", left: "-20px", width: "360px", zIndex: 12 },
+    baseRot: -7,
+    floatClass: "mavly-float-1",
+    parallaxFactor: 14,
+  },
+  // 2. Top Center-Left (Stationery / Creative Agency)
+  {
+    id: "slot-tcl",
+    primaryIndex: 1, // Image 02
+    secondaryIndex: 11, // Image 12
+    desktopStyle: { top: "-25px", left: "22%", width: "310px", zIndex: 10 },
+    baseRot: -3,
+    floatClass: "mavly-float-2",
+    parallaxFactor: 9,
+  },
+  // 3. Top Center-Right (Advisory / Wellness)
+  {
+    id: "slot-tcr",
+    primaryIndex: 2, // Image 03
+    secondaryIndex: 12, // Image 13
+    desktopStyle: { top: "-20px", right: "22%", width: "310px", zIndex: 10 },
+    baseRot: 3,
+    floatClass: "mavly-float-3",
+    parallaxFactor: 9,
+  },
+  // 4. Top-Right (Sprout Plant / Editorial Journal)
+  {
+    id: "slot-tr",
+    primaryIndex: 3, // Image 04
+    secondaryIndex: 13, // Image 14
+    desktopStyle: { top: "-10px", right: "-20px", width: "370px", zIndex: 12 },
+    baseRot: 6,
+    floatClass: "mavly-float-4",
+    parallaxFactor: 15,
+  },
+  // 5. Middle-Left (Auto Repair / Dev Cloud Tooling)
+  {
+    id: "slot-ml",
+    primaryIndex: 4, // Image 05
+    secondaryIndex: 14, // Image 15
+    desktopStyle: { top: "35%", left: "-40px", width: "370px", zIndex: 14 },
+    baseRot: -4,
+    floatClass: "mavly-float-2",
+    parallaxFactor: 18,
+  },
+  // 6. Middle-Right (Roy Pratt Fitness / Gourmet Dining)
+  {
+    id: "slot-mr",
+    primaryIndex: 5, // Image 06
+    secondaryIndex: 15, // Image 16
+    desktopStyle: { top: "33%", right: "-40px", width: "370px", zIndex: 14 },
+    baseRot: 4,
+    floatClass: "mavly-float-1",
+    parallaxFactor: 18,
+  },
+  // 7. Bottom-Left (Mobility / Fashion Lookbook)
+  {
+    id: "slot-bl",
+    primaryIndex: 6, // Image 07
+    secondaryIndex: 16, // Image 17
+    desktopStyle: { bottom: "-10px", left: "-30px", width: "340px", zIndex: 13 },
+    baseRot: -5,
+    floatClass: "mavly-float-3",
+    parallaxFactor: 16,
+  },
+  // 8. Bottom Center-Left (La Perla Architecture / Sustainable Energy)
+  {
+    id: "slot-bcl",
+    primaryIndex: 7, // Image 08
+    secondaryIndex: 17, // Image 18
+    desktopStyle: { bottom: "-30px", left: "20%", width: "290px", zIndex: 11 },
+    baseRot: -2,
+    floatClass: "mavly-float-4",
+    parallaxFactor: 10,
+  },
+  // 9. Bottom Center-Right (Nimbus Commute / Digital Studio Lab)
+  {
+    id: "slot-bcr",
+    primaryIndex: 8, // Image 09
+    secondaryIndex: 18, // Image 19
+    desktopStyle: { bottom: "-30px", right: "20%", width: "290px", zIndex: 11 },
+    baseRot: 2,
+    floatClass: "mavly-float-1",
+    parallaxFactor: 10,
+  },
+  // 10. Bottom-Right (Tech Consulting)
+  {
+    id: "slot-br",
+    primaryIndex: 9, // Image 10
+    secondaryIndex: 9, // Image 10 (stable anchor)
+    desktopStyle: { bottom: "-10px", right: "-30px", width: "340px", zIndex: 13 },
+    baseRot: 5,
+    floatClass: "mavly-float-2",
+    parallaxFactor: 16,
+  },
+];
+
 export function HeroSection() {
+  // Staggered crossfade cycling states for slots with secondary images
+  // Map of slot ID -> true if secondary image is currently active
+  const [slotToggles, setSlotToggles] = useState<Record<string, boolean>>({});
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Check reduced motion preference
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Parallax tracking on desktop
+  useEffect(() => {
+    if (isReducedMotion) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 1024) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      setParallax({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isReducedMotion]);
+
+  // Gentle, staggered slot transitions so that all 19 images are showcased over time
+  useEffect(() => {
+    if (isReducedMotion) return;
+
+    // Transition slots with alternate images on staggered 5-8 second timers
+    const slotsToCycle = DESKTOP_SLOTS.filter(
+      (slot) => slot.primaryIndex !== slot.secondaryIndex
+    );
+
+    let activeCycleIndex = 0;
+    const interval = setInterval(() => {
+      const slot = slotsToCycle[activeCycleIndex % slotsToCycle.length];
+      if (slot) {
+        setSlotToggles((prev) => ({
+          ...prev,
+          [slot.id]: !prev[slot.id],
+        }));
+      }
+      activeCycleIndex++;
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [isReducedMotion]);
+
   return (
-    <section className="relative pt-28 pb-20 md:pt-36 md:pb-32 overflow-hidden bg-[#faf9f6]/60">
+    <section
+      ref={heroRef}
+      className="relative pt-28 pb-20 md:pt-36 md:pb-36 overflow-hidden bg-[#faf9f6]/80 selection:bg-neutral-900 selection:text-white"
+    >
       {/* Subtle Ambient Radial Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-gradient-to-b from-black/[0.02] to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-gradient-to-b from-black/[0.02] to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* Floating Website Cards Gallery (Screenshots / Showcase) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden max-w-[1700px] mx-auto select-none hidden lg:block">
-        {/* === TOP-LEFT: Bakery Card === */}
-        <div
-          className="absolute -top-4 -left-12 xl:left-4 w-[340px] xl:w-[380px] rounded-2xl bg-white border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-3.5 transform -rotate-8 hover:rotate-0 transition-transform duration-500 opacity-90 xl:opacity-100"
-          style={{ transform: "rotate(-7deg)" }}
-        >
-          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-black/[0.04]">
-            <div className="flex flex-col">
-              <span className="font-serif italic font-bold text-base text-stone-900 tracking-tight leading-none">
-                MAVLY Gigue
-              </span>
-              <span className="text-[10px] text-stone-500 font-medium">
-                Artisanal Bakery & Bakehouse
-              </span>
-            </div>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 font-medium">
-              Explore Menu
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <div className="h-28 rounded-xl bg-amber-50/80 border border-amber-200/40 p-2 flex flex-col justify-end overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <div className="w-8 h-8 rounded-full bg-amber-100 mx-auto mb-2 flex items-center justify-center text-xs">☕</div>
-              <span className="relative text-[10px] font-semibold text-white">Iced Latte</span>
-            </div>
-            <div className="h-28 rounded-xl bg-amber-100/70 border border-amber-300/40 p-2 flex flex-col justify-end overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <div className="w-8 h-8 rounded-full bg-amber-200 mx-auto mb-2 flex items-center justify-center text-xs">🥐</div>
-              <span className="relative text-[10px] font-semibold text-white">Cinnamon Roll</span>
-            </div>
-            <div className="h-28 rounded-xl bg-stone-100 border border-stone-200 p-2 flex flex-col justify-end overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <div className="w-8 h-8 rounded-full bg-stone-200 mx-auto mb-2 flex items-center justify-center text-xs">🥖</div>
-              <span className="relative text-[10px] font-semibold text-white">Warm Bread</span>
-            </div>
-          </div>
-        </div>
+      {/* ── DESKTOP & TABLET: Floating Website Showcase Canvas ── */}
+      <div
+        className="absolute inset-0 pointer-events-none overflow-hidden max-w-[1720px] mx-auto select-none hidden lg:block"
+        aria-hidden="true"
+      >
+        {DESKTOP_SLOTS.map((slot) => {
+          const isFlipped = !!slotToggles[slot.id];
+          const primaryAsset = HERO_SHOWCASE_ASSETS[slot.primaryIndex];
+          const secondaryAsset = HERO_SHOWCASE_ASSETS[slot.secondaryIndex];
+          const activeAsset = isFlipped ? secondaryAsset : primaryAsset;
 
-        {/* === MIDDLE-LEFT: Fitness Card === */}
-        <div
-          className="absolute top-64 -left-16 xl:-left-6 w-[340px] xl:w-[370px] rounded-2xl bg-stone-950 text-white border border-stone-800 shadow-[0_22px_55px_rgba(0,0,0,0.18)] p-4 transform -rotate-3 transition-transform duration-500 opacity-90 xl:opacity-100"
-          style={{ transform: "rotate(-4deg)" }}
-        >
-          <div className="flex items-center justify-between text-[10px] text-stone-400 mb-2">
-            <span className="font-semibold text-white tracking-wider uppercase text-[9px]">
-              Roy Pratt · Fitness
-            </span>
-            <div className="flex gap-2">
-              <span>Home</span>
-              <span>Plans</span>
-              <span>Contact</span>
-            </div>
-          </div>
-          <div className="h-28 rounded-xl bg-stone-900 border border-stone-800 p-3 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]" />
-            <span className="text-sm font-extrabold tracking-tight leading-tight uppercase max-w-[200px] relative z-10">
-              It doesn&apos;t get easier. <br />
-              <span className="text-orange-500">You get better.</span>
-            </span>
-            <div className="flex gap-2 relative z-10">
-              <span className="text-[10px] px-2.5 py-1 rounded-md bg-white text-stone-950 font-bold">
-                My Plans ↗
-              </span>
-              <span className="text-[10px] px-2.5 py-1 rounded-md border border-stone-700 text-stone-300">
-                Contact
-              </span>
-            </div>
-          </div>
-        </div>
+          // Parallax transform calculation
+          const offsetX = parallax.x * slot.parallaxFactor;
+          const offsetY = parallax.y * slot.parallaxFactor;
 
-        {/* === BOTTOM-LEFT: Commute & Business Cards === */}
-        <div
-          className="absolute bottom-6 -left-10 xl:left-2 w-[310px] xl:w-[340px] rounded-2xl bg-white border border-black/[0.08] shadow-[0_18px_45px_rgba(0,0,0,0.08)] p-3.5 transform -rotate-5"
-          style={{ transform: "rotate(-5deg)" }}
-        >
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="w-2 h-2 rounded-full bg-blue-500" />
-            <span className="text-[11px] font-semibold text-gray-900">Nimbus Commute</span>
-          </div>
-          <div className="h-20 rounded-xl bg-gradient-to-r from-slate-800 to-slate-900 text-white p-3 flex flex-col justify-end">
-            <span className="text-xs font-bold">Commute with Purpose</span>
-            <span className="text-[9px] text-slate-400 mt-0.5">Track your daily transit & impact</span>
-          </div>
-        </div>
+          return (
+            <div
+              key={slot.id}
+              className="absolute pointer-events-auto transition-transform duration-300 ease-out group"
+              style={{
+                ...slot.desktopStyle,
+                transform: `translate3d(${offsetX}px, ${offsetY}px, 0)`,
+              }}
+            >
+              {/* Inner card with float animation and resting rotation */}
+              <div
+                className={`mavly-floating-card rounded-2xl sm:rounded-3xl bg-white p-2.5 sm:p-3 border border-black/[0.08] shadow-[0_18px_40px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:shadow-[0_26px_60px_rgba(0,0,0,0.15),0_6px_16px_rgba(0,0,0,0.08)] hover:border-black/[0.16] hover:scale-[1.03] transition-all duration-300 ease-out relative overflow-hidden ${
+                  !isReducedMotion ? slot.floatClass : ""
+                }`}
+                style={
+                  {
+                    "--rot": `${slot.baseRot}deg`,
+                    transform: `rotate(${slot.baseRot}deg)`,
+                    animationDuration: `${7 + (slot.primaryIndex % 5)}s`,
+                  } as React.CSSProperties
+                }
+              >
+                {/* Minimalist Browser Frame Bar */}
+                <div className="flex items-center justify-between px-2 pb-2 mb-1.5 border-b border-black/[0.05]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-rose-400 transition-colors" />
+                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-amber-400 transition-colors" />
+                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-emerald-400 transition-colors" />
+                  </div>
+                  <span className="text-[10px] font-medium text-stone-400 truncate max-w-[170px]">
+                    {activeAsset?.label}
+                  </span>
+                </div>
 
-        {/* === TOP-RIGHT: Advice & Sprout Plant Shop === */}
-        <div
-          className="absolute -top-4 -right-12 xl:right-4 w-[340px] xl:w-[380px] rounded-2xl bg-white border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-3.5 transform rotate-6 hover:rotate-0 transition-transform duration-500 opacity-90 xl:opacity-100"
-          style={{ transform: "rotate(6deg)" }}
-        >
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-black/[0.04]">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              <span className="font-semibold text-xs text-stone-900">Sprout Boutique</span>
-            </div>
-            <span className="text-[10px] font-medium text-stone-500">Shop Plants</span>
-          </div>
-          <div className="h-24 rounded-xl bg-gradient-to-br from-emerald-900 via-stone-900 to-stone-950 text-white p-3.5 flex flex-col justify-center">
-            <span className="text-xs sm:text-sm font-semibold tracking-tight text-emerald-100">
-              Is There Such a Thing as Too Many Plants?
-            </span>
-            <span className="text-[10px] text-emerald-300/80 mt-1">Discover rare tropical varieties</span>
-          </div>
-        </div>
+                {/* Website Preview Image Container */}
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-stone-100">
+                  {/* Primary Image */}
+                  <Image
+                    src={primaryAsset.url}
+                    alt={primaryAsset.label}
+                    fill
+                    sizes="(max-width: 1400px) 380px, 440px"
+                    priority={slot.primaryIndex < 4}
+                    className={`object-cover object-top transition-opacity duration-1000 ease-in-out ${
+                      isFlipped ? "opacity-0" : "opacity-100"
+                    }`}
+                    referrerPolicy="no-referrer"
+                  />
 
-        {/* === MIDDLE-RIGHT: Auto Repair Card === */}
-        <div
-          className="absolute top-64 -right-16 xl:-right-6 w-[340px] xl:w-[370px] rounded-2xl bg-white border border-black/[0.08] shadow-[0_22px_55px_rgba(0,0,0,0.12)] p-4 transform rotate-4 transition-transform duration-500 opacity-90 xl:opacity-100"
-          style={{ transform: "rotate(4deg)" }}
-        >
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-black/[0.04]">
-            <span className="font-bold text-[11px] text-gray-900 tracking-wider">
-              SANDERS & YOUNG
-            </span>
-            <span className="text-[9px] text-gray-500 font-medium uppercase tracking-wide">
-              Auto Care
-            </span>
-          </div>
-          <div className="rounded-xl border border-black/[0.06] overflow-hidden">
-            <div className="bg-orange-600 text-white p-3 flex flex-col">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-orange-200">
-                Certified Service
-              </span>
-              <span className="text-base font-extrabold tracking-tight uppercase leading-none mt-1">
-                Auto Repair You Can Trust
-              </span>
+                  {/* Secondary Image for smooth crossfade cycling */}
+                  {slot.primaryIndex !== slot.secondaryIndex && (
+                    <Image
+                      src={secondaryAsset.url}
+                      alt={secondaryAsset.label}
+                      fill
+                      sizes="(max-width: 1400px) 380px, 440px"
+                      className={`object-cover object-top transition-opacity duration-1000 ease-in-out ${
+                        isFlipped ? "opacity-100" : "opacity-0"
+                      }`}
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="bg-stone-50 p-2.5 flex items-center justify-between text-[10px] text-gray-600">
-              <span>Brakes · Diagnostics · Tires</span>
-              <span className="font-semibold text-orange-600">Schedule →</span>
-            </div>
-          </div>
-        </div>
-
-        {/* === BOTTOM-RIGHT: Architecture & EV Mobility === */}
-        <div
-          className="absolute bottom-6 -right-10 xl:right-2 w-[310px] xl:w-[340px] rounded-2xl bg-white border border-black/[0.08] shadow-[0_18px_45px_rgba(0,0,0,0.08)] p-3.5 transform rotate-5"
-          style={{ transform: "rotate(5deg)" }}
-        >
-          <div className="flex items-center justify-between text-[10px] text-stone-500 mb-2">
-            <span className="font-semibold text-stone-900">LA PERLA</span>
-            <span>52 Brook St.</span>
-          </div>
-          <div className="h-20 rounded-xl bg-gradient-to-r from-stone-900 to-stone-800 text-white p-3 flex flex-col justify-end">
-            <span className="text-xs font-serif font-bold">The Future of Mobility</span>
-            <span className="text-[9px] text-stone-400 mt-0.5">Architectural living & zero-emissions transit</span>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-      {/* Main Center Content */}
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
-        {/* Mavly Brand Logo */}
+      {/* ── Main Center Content ── */}
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-20 pointer-events-auto">
+        {/* Brand Logo */}
         <div className="flex items-center justify-center mb-6 sm:mb-8">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl overflow-hidden bg-white shadow-md p-1.5 border border-black/[0.08] flex items-center justify-center transition-transform hover:scale-105 duration-200">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl overflow-hidden bg-white shadow-md p-1.5 border border-black/[0.08] flex items-center justify-center transition-transform hover:scale-105 duration-200 shrink-0">
             <Image
               src="/logo/Mavly.png"
               alt="Mavly Logo"
@@ -184,12 +318,12 @@ export function HeroSection() {
           No Coding Required.
         </h1>
 
-        {/* Subheading */}
-        <p className="mt-5 text-sm sm:text-base md:text-lg text-[#2563eb] font-normal leading-relaxed max-w-xl mx-auto">
+        {/* Supporting Description */}
+        <p className="mt-5 text-sm sm:text-base md:text-lg text-gray-700 font-normal leading-relaxed max-w-xl mx-auto">
           Mavly is an AI website builder that turns your ideas into beautiful, functional websites. We don&apos;t make websites. We make memories.
         </p>
 
-        {/* Authentication Buttons directly below the subheading */}
+        {/* Authentication Buttons directly below the supporting description */}
         <div className="mt-8 flex flex-col items-center gap-3 w-full max-w-sm mx-auto">
           {/* Button 1: Continue with Google */}
           <Link
@@ -243,6 +377,45 @@ export function HeroSection() {
               Privacy Policy
             </Link>
           </p>
+        </div>
+      </div>
+
+      {/* ── MOBILE & TABLET: Curated Floating Showcase Strip ── */}
+      <div className="mt-14 px-4 lg:hidden relative z-10">
+        <div className="text-center mb-4">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+            Created with Mavly AI
+          </span>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-2 scrollbar-none snap-x snap-mandatory">
+          {HERO_SHOWCASE_ASSETS.map((asset, idx) => (
+            <div
+              key={asset.id}
+              className="shrink-0 w-[260px] sm:w-[300px] snap-center rounded-2xl bg-white p-2.5 border border-black/[0.08] shadow-md"
+            >
+              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-black/[0.05]">
+                <div className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
+                </div>
+                <span className="text-[9px] font-medium text-stone-400 truncate max-w-[160px]">
+                  {asset.label}
+                </span>
+              </div>
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-stone-100">
+                <Image
+                  src={asset.url}
+                  alt={asset.label}
+                  fill
+                  sizes="300px"
+                  priority={idx < 2}
+                  className="object-cover object-top"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

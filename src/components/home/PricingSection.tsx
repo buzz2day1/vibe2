@@ -113,10 +113,11 @@ export function PricingSection() {
 
             <div className="mt-8 pt-6 border-t border-black/[0.06]">
               <Link
-                href="/"
-                className="w-full py-3.5 rounded-full text-xs font-semibold bg-white hover:bg-neutral-50 text-gray-900 border border-black/[0.12] transition-all flex items-center justify-center gap-2 active:scale-98"
+                href="/login"
+                className="w-full py-3.5 rounded-full text-xs font-semibold bg-white hover:bg-neutral-50 text-gray-900 border border-black/[0.12] transition-all flex items-center justify-center gap-2 active:scale-98 shadow-xs"
               >
-                <span>Explore Features</span>
+                <span>Get Started with Pro</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <p className="text-[11px] text-center text-gray-400 mt-2.5">
                 Priority access and launch pricing for early users

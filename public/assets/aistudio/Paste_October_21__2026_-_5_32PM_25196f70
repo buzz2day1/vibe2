@@ -1,0 +1,639 @@
+# Mavly Homepage — Premium Animated Website Showcase Hero
+
+## OBJECTIVE
+
+Upgrade the existing Mavly homepage at `/home` by creating a premium, immersive hero section using all 19 ImageKit images listed in this prompt.
+
+The visual inspiration is the supplied Mavly screenshot: a central brand and authentication area, surrounded by floating website-preview cards of different sizes, positions, and rotations.
+
+The final result should feel polished, editorial, tactile, modern, and alive. The website-preview images should create the impression that Mavly can transform ideas into beautiful websites.
+
+This is an enhancement of the existing homepage, not a complete website rewrite.
+
+**The three non-negotiable requirements are:**
+
+1. Use all 19 supplied ImageKit images in the hero's visual composition or intentional animation cycle.
+2. Build premium, fluid, carefully choreographed animations inspired by the general visual quality of Emergent's website.
+3. Preserve Mavly's existing black-and-white brand direction, actual logo, headline, Google/GitHub authentication functionality, and current route structure.
+
+Do not stop after describing a plan. Inspect the project, implement the page, and verify the rendered result.
+
+---
+
+# PHASE 1 — INSPECT THE EXISTING PROJECT FIRST
+
+Before changing anything, inspect:
+
+- The existing `/home` page and hero component.
+- The official Mavly logo and its available variants.
+- Existing typography, CSS variables, colour tokens, backgrounds, borders, and shadows.
+- Current Google and GitHub authentication buttons and their handlers.
+- Existing responsive breakpoints.
+- Installed animation libraries and existing motion conventions.
+- Existing image components and loading strategies.
+- The current homepage sections below the hero.
+
+Reuse the existing project architecture and established design conventions. Do not assume a particular framework or replace existing infrastructure.
+
+## 🎨 Mandatory colour inspection
+
+Inspect the real Mavly design system before applying any styles.
+
+Use its existing palette consistently throughout the hero, floating image cards, buttons, shadows, overlays, and responsive layouts.
+
+The intended appearance is predominantly black, white, and neutral.
+
+- Keep the background white or use the existing light-neutral background.
+- Use black or the existing neutral colour for primary typography.
+- Preserve the existing Google button and GitHub button treatments.
+- Use existing accent colours only where the current Mavly design system calls for them.
+- Do not introduce a new blue or multicolour gradient palette.
+- Do not blindly copy Emergent's colours or another website's branding.
+
+### Refined Soft UI / Neumorphism
+
+Use restrained Neumorphic styling where it genuinely improves the interface.
+
+Floating preview cards may have subtle dual shadows, softly elevated surfaces, rounded corners, and delicate neutral borders.
+
+Keep the shadows realistic and controlled. The images should feel like physical website-preview cards floating above a clean canvas, not plastic UI elements surrounded by excessive glow.
+
+Do not sacrifice image clarity, typography, accessibility, or performance for visual effects.
+
+Keep these styles scoped to the homepage where possible. Do not change global styles in a way that affects unrelated pages.
+
+---
+
+# PHASE 2 — USE ALL 19 IMAGEKIT ASSETS
+
+The following 19 URLs are the actual assets supplied for this implementation.
+
+**Every URL must be included in the hero image data source and used in the final experience. Do not omit images, substitute stock imagery, invent alternative URLs, or replace the supplied assets with placeholders.**
+
+Use the provided URLs as written, without modifying the paths or adding transformation parameters.
+
+## Supplied image assets
+
+**Image 01**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.05%E2%80%AFPM.png
+
+**Image 02**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.47%E2%80%AFPM.png
+
+**Image 03**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.34%E2%80%AFPM.png
+
+**Image 04**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.06%E2%80%AFPM.png
+
+**Image 05**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.14%E2%80%AFPM.png
+
+**Image 06**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.45%E2%80%AFPM.png
+
+**Image 07**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.12.06%E2%80%AFPM.png
+
+**Image 08**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.29%E2%80%AFPM.png
+
+**Image 09**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.12%E2%80%AFPM.png
+
+**Image 10**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.04%E2%80%AFPM.png
+
+**Image 11**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.16%E2%80%AFPM.png
+
+**Image 12**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.25%E2%80%AFPM.png
+
+**Image 13**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.04.59%E2%80%AFPM.png
+
+**Image 14**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.30%E2%80%AFPM.png
+
+**Image 15**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.00%E2%80%AFPM.png
+
+**Image 16**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.33%E2%80%AFPM.png
+
+**Image 17**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.29%E2%80%AFPM.png
+
+**Image 18**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.16%E2%80%AFPM.png
+
+**Image 19**
+https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.53%E2%80%AFPM.png
+
+### Asset handling requirements
+
+Before positioning the images, inspect them visually if the environment allows it. Understand their content, aspect ratios, and composition rather than relying on filenames alone.
+
+Organise the image URLs into a single maintainable frontend data source or equivalent structure.
+
+Every image must be used by the rendered hero experience, either as a visible card or in an intentional animated image-slot sequence.
+
+Do not insert the same image repeatedly merely to make the collage look full.
+
+If an asset fails to load, investigate the actual URL and loading error instead of silently replacing it with unrelated imagery.
+
+---
+
+# PHASE 3 — BUILD THE CENTERED HERO COMPOSITION
+
+The main content must remain the visual anchor of the page.
+
+Use the supplied Mavly reference screenshot as the layout guide.
+
+## Central content
+
+Preserve the existing homepage's intended content.
+
+### Brand logo
+
+Display Mavly's actual official logo above the headline.
+
+Reuse the existing logo file or shared logo component.
+
+Do not recreate the logo using text, replace it with another company's branding, distort its proportions, or introduce an unrelated icon.
+
+The logo should be visually prominent without becoming excessively large.
+
+A subtle entrance animation is acceptable, but avoid a continuous spinning, bouncing, or flashing logo.
+
+### Headline
+
+Keep this exact headline:
+
+**Build Websites with AI. No Coding Required.**
+
+Use the existing Mavly typography and brand styling.
+
+The headline should be large, confident, well-balanced, and readable over the image composition.
+
+Do not replace it with "One goal. Multiple specialised agents" or other multi-agent positioning copy.
+
+Do not introduce additional marketing headlines inside the hero.
+
+### Supporting description
+
+Keep this exact copy:
+
+"Mavly is an AI website builder that turns your ideas into beautiful, functional websites. We don't make websites. We make memories."
+
+Keep the supporting text concise in appearance, with an appropriate maximum width and comfortable line height.
+
+Follow the existing black-and-white design direction. Do not force a blue text gradient into the description.
+
+### Authentication buttons
+
+Preserve the existing authentication buttons beneath the supporting description, in this order:
+
+1. **Continue with Google**
+2. **Continue with GitHub**
+
+Use the existing working provider components, icons, handlers, and authentication destinations.
+
+Preserve their established black primary-button and white or neutral outlined-button treatments when consistent with the current Mavly implementation.
+
+The buttons should have matching dimensions, clear typography, consistent spacing, and restrained hover and pressed states.
+
+Do not replace them with "Join Beta", "Start Building", "Get Early Access", or invented authentication actions.
+
+### Legal notice
+
+Preserve the existing Terms of Service and Privacy Policy notice and verified links, if present.
+
+Keep it discreet, legible, and correctly spaced beneath the authentication buttons.
+
+### Central content priority
+
+The logo, headline, description, and authentication buttons must remain easy to see at all times.
+
+The floating images must never obstruct text, overlap the main controls, or make the centre feel crowded.
+
+Use a clear stacking order: visual cards in the background layers, with the central content above them.
+
+---
+
+# PHASE 4 — CREATE THE FLOATING WEBSITE-PREVIEW COLLAGE
+
+This is the main visual feature of the task.
+
+The supplied images should look like previews of websites created with Mavly, floating around the centred hero content.
+
+They must be rendered as individual image cards or equivalent visual preview elements, not merely merged into one static wallpaper.
+
+## Desktop composition
+
+Build a spacious canvas around the centre content.
+
+Distribute image cards through the outer areas of the hero:
+
+- Upper left.
+- Upper centre-left.
+- Upper right.
+- Upper centre-right.
+- Middle left.
+- Middle right.
+- Lower left.
+- Lower right.
+- Additional depth layers near the outer edges.
+
+Use varied card sizes, restrained rotations, slight perspective, and natural-looking depth.
+
+Some cards can be partially cropped by the hero's boundaries, as in the reference image. Others should be fully visible.
+
+Do not place important image content outside the viewport simply for decoration.
+
+Avoid perfect symmetry. A carefully balanced, editorial composition should feel art-directed rather than mechanically arranged.
+
+### Card styling
+
+Each image card should use:
+
+- The original image at its correct aspect ratio.
+- Rounded corners that fit the existing design system.
+- A subtle light border where appropriate.
+- A soft, realistic neutral shadow.
+- A clean silhouette against the background.
+- A slight resting rotation, generally within approximately 3–8 degrees.
+- A carefully controlled stacking order.
+
+Vary the widths, heights, and rotations so the collage looks natural.
+
+Avoid making every image identical in size.
+
+Do not crop website screenshots aggressively if doing so hides meaningful content.
+
+Use `object-fit` appropriately after inspecting the assets. Preserve the image's proportions and composition.
+
+### Composition and text readability
+
+The central logo and copy must remain visually dominant.
+
+Leave a sufficient central safe area around the headline, description, Google button, and GitHub button.
+
+If necessary, use a very subtle neutral surface treatment behind the central content. Do not cover the entire collage with a heavy opaque panel.
+
+Use sensible responsive positioning rather than hardcoded coordinates that work only at one desktop resolution.
+
+### Use all 19 images intelligently
+
+All supplied assets must be integrated into the experience.
+
+Do not force all 19 to be large and fully visible simultaneously if that makes the composition crowded.
+
+Instead:
+
+- Keep a carefully selected set of primary cards visible around the central content.
+- Use additional cards at smaller sizes or on secondary depth layers when they fit naturally.
+- Where appropriate, cycle secondary cards through the remaining supplied assets using slow, controlled crossfades.
+- Ensure the total animation cycle includes all 19 unique assets.
+- Avoid abrupt swaps, simultaneous flashing, rapid carousels, and distracting image changes.
+
+The initial viewport must immediately show a rich floating showcase rather than waiting for the animation to start.
+
+---
+
+# PHASE 5 — PREMIUM MOTION DESIGN
+
+The animation quality is a top priority.
+
+Use the general principles of a modern AI-builder landing page, including a concise central message, beautiful site previews, subtle motion, and an interface that feels carefully choreographed.
+
+Use the supplied Mavly reference as the direct visual guide.
+
+**Take inspiration from Emergent's overall level of polish and motion restraint, but do not reproduce its website, logo, exact composition, branded colours, or proprietary graphics. Create a distinct Mavly experience using the 19 provided assets.**
+
+The animation should feel smooth, layered, tactile, and intentional—not like random images moving around a screen.
+
+## Animation A — Initial entrance
+
+On initial page load:
+
+1. The white or existing light-neutral canvas appears cleanly.
+2. The floating image cards enter with a subtle staggered reveal.
+3. Each card moves a short distance from its final position while its opacity increases.
+4. Cards settle into their resting rotation and position.
+5. The Mavly logo and central headline enter with a restrained fade-and-rise effect.
+6. The description appears next.
+7. The Google and GitHub buttons become visible with a small, natural delay.
+
+Use a coherent timeline so the animation feels orchestrated.
+
+Do not make the user wait before the authentication buttons become usable.
+
+Keep the entrance short enough that the hero feels immediate.
+
+## Animation B — Gentle floating movement
+
+After the initial entrance, give the preview cards a sense of life.
+
+Each card may have its own subtle animation:
+
+- A few pixels of vertical movement.
+- Tiny horizontal drift.
+- Very slight rotational variation.
+- Different timing and phase offsets between cards.
+- Small differences in motion duration.
+
+Use slow, smooth loops. As a starting direction, use durations around 6–12 seconds, adjusting to achieve a premium result.
+
+Avoid exaggerated bouncing, fast spinning, constant wobbling, or visibly repetitive movement.
+
+The cards should appear to float naturally, not behave like balloons.
+
+## Animation C — Layered parallax
+
+If appropriate for the current implementation, add restrained pointer-based parallax on desktop.
+
+- Foreground cards may respond slightly more than distant cards.
+- Background cards should move less.
+- Keep the central heading stable and readable.
+- Limit rotations and perspective changes.
+- Prevent movement from causing overlap with text or controls.
+
+Use lightweight motion based on the existing animation infrastructure.
+
+Do not install a large library solely to add simple parallax.
+
+Disable or reduce pointer-driven motion on touch devices.
+
+The page must remain usable without moving the mouse.
+
+## Animation D — Hover interactions
+
+When a desktop user hovers over a preview card:
+
+- Gently lift the card.
+- Slightly increase its elevation.
+- Reduce or neutralise the resting rotation if that improves readability.
+- Sharpen the image visually without applying an unnecessary filter.
+- Smoothly return to the resting state on pointer exit.
+
+Keep the effect subtle.
+
+The images are visual examples, not mandatory navigation controls. Do not make them clickable links unless there is a real, deliberate action associated with them.
+
+Do not add pointer effects that prevent text selection or normal browser interaction.
+
+## Animation E — Smooth image transitions
+
+If using fixed card slots to display all 19 images over time:
+
+- Use slow opacity crossfades and controlled transforms.
+- Keep the majority of cards stable while only a small subset transitions.
+- Never replace every image at once.
+- Do not introduce a fast carousel.
+- Do not make cards flicker, flash, or disappear abruptly.
+- Ensure image transitions do not cause layout shifts.
+
+All supplied URLs must remain accounted for in the actual image data source.
+
+If all images can be accommodated in a balanced static composition without clutter, prefer that approach over unnecessary image cycling.
+
+## Animation F — Scroll transitions
+
+Use the hero's existing section transitions where appropriate.
+
+If the homepage already implements scroll-based animations, reuse those conventions. Otherwise, avoid introducing complicated scroll hijacking or excessive scroll-linked motion.
+
+Do not cause the hero images to cover the Pricing, Capabilities, FAQ, or other homepage sections during scroll.
+
+---
+
+# PHASE 6 — RESPONSIVE BEHAVIOUR
+
+The desktop design must not simply be compressed onto mobile.
+
+## Desktop
+
+Use a generous composition with floating cards distributed around the central content.
+
+Preserve the overall visual richness of the supplied reference.
+
+At wide viewports, more peripheral image cards can be visible.
+
+## Tablet
+
+Reduce card sizes and the number of simultaneous large visual elements.
+
+Adjust offsets and rotations so the central content remains clear.
+
+Prevent image cards from overlapping the Google and GitHub buttons.
+
+## Mobile
+
+Simplify the composition deliberately.
+
+- Keep the official logo, headline, description, and authentication buttons prominent.
+- Show a smaller number of preview cards at any one time.
+- Use the available supplied assets within the same image-slot system if necessary.
+- Keep card motion restrained.
+- Remove or disable pointer parallax.
+- Avoid large cards that cover the centre.
+- Prevent horizontal overflow.
+- Ensure both authentication buttons fit comfortably within the viewport.
+- Keep the legal notice readable.
+- Respect the user's reduced-motion preference.
+
+Do not render all 19 images at full desktop dimensions on a mobile screen.
+
+The mobile version should still feel intentional, premium, and recognisably part of the same brand.
+
+---
+
+# PHASE 7 — ACCESSIBILITY AND PERFORMANCE
+
+The animated hero must remain lightweight and accessible.
+
+## Image loading
+
+- Load the prominent above-the-fold assets appropriately.
+- Use lazy loading for non-visible secondary assets where suitable.
+- Preserve explicit image dimensions or aspect ratios to prevent layout shifts.
+- Use asynchronous image decoding where supported.
+- Avoid loading duplicate copies of the same asset.
+- Avoid unnecessarily high-resolution decoding for tiny background cards.
+- Do not modify the supplied URLs or add unverified transformations.
+
+## Rendering performance
+
+Prefer CSS transforms and opacity for animation.
+
+Avoid expensive filters, excessive repaints, heavy blur animations, or continuous JavaScript-driven layout calculations.
+
+Reuse existing animation libraries if the project already has them.
+
+Avoid creating dozens of independently expensive animation loops.
+
+If using shared animation logic or CSS keyframes, keep it maintainable and appropriately scoped.
+
+## Accessibility
+
+- Respect `prefers-reduced-motion`.
+- Disable or substantially reduce continuous movement when reduced motion is requested.
+- Ensure the main hero copy stays readable throughout every animation state.
+- Preserve keyboard navigation and existing button accessibility.
+- Keep authentication buttons fully interactive during animations.
+- Use descriptive image alternatives if the images communicate meaningful content. If an image card is purely decorative, use an appropriate empty alternative text to avoid repetitive screen-reader output.
+- Do not hide essential content behind animation or hover interactions.
+
+The page should remain complete and understandable even when all animations are disabled.
+
+---
+
+# PHASE 8 — PRESERVE THE EXISTING BRAND AND FUNCTIONALITY
+
+This task is about the hero's visual treatment, not a redesign of the entire site.
+
+Preserve the existing:
+
+- `/home` route.
+- Mavly headline.
+- Supporting description.
+- Official Mavly logo.
+- Google authentication action.
+- GitHub authentication action.
+- Legal links.
+- Existing pricing, FAQ, and other valid page sections.
+- Existing homepage navigation and CTA behaviour.
+- Existing theme conventions.
+
+Do not add "Join Beta" messaging.
+
+Do not change the page into a multi-agent architecture landing page.
+
+Do not reintroduce the removed Coordinator Pipeline card or the deleted agent-architecture explanation section.
+
+Do not replace the Google/GitHub buttons with invented actions.
+
+Do not make changes to the login page unless a separate issue is directly caused by this implementation and must be reported.
+
+---
+
+# PHASE 9 — FRONTEND-ONLY BOUNDARY
+
+This implementation must remain frontend-only.
+
+Allowed:
+
+- Editing the existing homepage hero.
+- Creating reusable floating preview-card components.
+- Adding or updating homepage-specific CSS.
+- Adding lightweight frontend animation logic.
+- Maintaining the 19-image data source.
+- Adjusting responsive positions and visual stacking.
+- Reusing existing shared UI components.
+
+Not allowed:
+
+- Backend changes.
+- API route or handler changes.
+- Database changes.
+- Authentication or authorisation modifications.
+- Environment variable changes.
+- OAuth configuration changes.
+- Third-party integration changes.
+- Changes to existing business logic.
+- Changes to existing agent execution behaviour.
+- Unrelated route modifications.
+- Unnecessary dependency installation.
+- Replacement of the entire project or framework.
+
+Do not modify global styling unnecessarily. Keep the new layout and animation rules scoped to the homepage hero.
+
+---
+
+# PHASE 10 — VISUAL VERIFICATION AND FINAL QUALITY CHECK
+
+After implementation, inspect the actual rendered `/home` page at representative viewport sizes.
+
+### Visual checks
+
+Confirm that:
+
+- The hero matches the intended floating-preview composition.
+- The central logo and headline are prominent.
+- The supporting copy remains readable.
+- Google and GitHub buttons are clearly visible and usable.
+- The background feels rich but not cluttered.
+- Images have realistic sizing, rotation, and soft elevation.
+- All cards are correctly aligned with the viewport.
+- The 19 supplied ImageKit assets are included in the implemented experience.
+- There are no broken image URLs or missing image states.
+- Cards do not cover the main content.
+- The visual identity remains consistent with Mavly's existing black-and-white design.
+- The animations feel smooth, restrained, and premium.
+
+### Animation checks
+
+Confirm that:
+
+- Entrance animation runs correctly.
+- Floating motion does not become distracting.
+- Cards do not jitter or jump.
+- Image transitions do not cause layout shifts.
+- Parallax, if implemented, remains subtle.
+- Hover states return smoothly to their original state.
+- Reduced-motion preferences are respected.
+- Mobile layouts do not overflow.
+
+### Functionality checks
+
+Confirm that:
+
+- `/home` loads directly.
+- Existing authentication buttons still work through their current implementation.
+- Existing homepage navigation remains intact.
+- Pricing and FAQ sections continue to work.
+- No unwanted beta CTA has been introduced.
+- There are no new console errors or broken assets attributable to this change.
+
+### Technical verification
+
+Run relevant available project checks, including type checking, linting, and the production build where supported.
+
+Inspect the final diff and confirm that no backend, authentication, configuration, environment, or unrelated application logic was changed.
+
+Do not claim a test passed unless it was actually run.
+
+---
+
+# DEFINITION OF DONE
+
+The task is complete only when:
+
+- [ ] The existing `/home` hero has been enhanced with the floating website-preview composition.
+- [ ] All 19 supplied ImageKit URLs are included and used by the experience.
+- [ ] No unrelated images or placeholder substitutes have been introduced.
+- [ ] The official Mavly logo is preserved.
+- [ ] The existing headline and supporting description are preserved.
+- [ ] Google and GitHub authentication actions remain functional.
+- [ ] The existing black-and-white visual direction is respected.
+- [ ] The cards feature smooth entrance and restrained floating animations.
+- [ ] Any parallax or hover effects are subtle and responsive.
+- [ ] Desktop, tablet, and mobile layouts have been checked.
+- [ ] Reduced-motion support is implemented.
+- [ ] Existing homepage sections and navigation remain intact.
+- [ ] No backend or authentication infrastructure changes were made.
+- [ ] The implementation has been visually verified.
+
+## FINAL EXECUTION INSTRUCTION
+
+Inspect the repository and all supplied ImageKit assets. Then implement the complete animated hero directly in the existing `/home` page.
+
+Prioritise art direction, image composition, typography, motion quality, responsive behaviour, and performance.
+
+Do not produce a static mockup or stop after writing a plan. Do not substitute the supplied assets. Do not invent new homepage copy or alter working authentication logic.
+
+The finished hero should feel like an elegant, living showcase of websites made with Mavly: premium floating previews surrounding a clean central brand experience.
+
+When finished, report which files were modified, confirm that all 19 images are integrated, describe the animation behaviour, and provide the actual verification results and any remaining issues.
