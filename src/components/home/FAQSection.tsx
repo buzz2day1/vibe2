@@ -82,10 +82,10 @@ export function FAQSection() {
               <div
                 key={idx}
                 onClick={() => toggleItem(idx)}
-                className={`rounded-2xl transition-all duration-200 overflow-hidden cursor-pointer ${
+                className={`rounded-2xl transition-all duration-200 overflow-hidden cursor-pointer select-none ${
                   isOpen
-                    ? "bg-[#faf9f6] border border-black/[0.12] shadow-2xs"
-                    : "bg-[#faf9f6] border border-black/[0.06] hover:border-black/[0.12]"
+                    ? "bg-[#faf9f6] border border-black/[0.14] shadow-[0_4px_16px_-2px_rgba(0,0,0,0.04)]"
+                    : "bg-[#faf9f6] border border-black/[0.06] hover:border-black/[0.14] hover:shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]"
                 }`}
               >
                 <h3>
@@ -99,14 +99,14 @@ export function FAQSection() {
                       e.stopPropagation();
                       toggleItem(idx);
                     }}
-                    className="w-full py-5 px-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-gray-950 hover:text-neutral-700 transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-2xl"
+                    className="w-full py-5 px-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-gray-950 hover:text-neutral-700 active:bg-black/[0.02] transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-2xl"
                   >
                     <span className="pr-2">{faq.q}</span>
                     <div
                       aria-hidden="true"
-                      className={`p-1.5 sm:p-2 rounded-xl bg-white border transition-transform duration-200 ease-out shrink-0 flex items-center justify-center motion-reduce:transition-none pointer-events-none ${
+                      className={`p-1.5 sm:p-2 rounded-xl bg-white border transition-all duration-200 ease-out shrink-0 flex items-center justify-center motion-reduce:transition-none pointer-events-none shadow-xs ${
                         isOpen
-                          ? "rotate-180 text-gray-950 border-black/[0.15] shadow-xs"
+                          ? "rotate-180 text-gray-950 border-black/[0.16] shadow-sm"
                           : "rotate-0 text-gray-400 border-black/[0.08]"
                       }`}
                     >

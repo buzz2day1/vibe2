@@ -37,7 +37,7 @@ export function HomeFooter() {
             <div className="mt-6">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-black text-white hover:bg-neutral-800 transition-colors"
+                className="mavly-btn-primary px-4 py-2 text-xs font-semibold"
               >
                 <span>Launch Builder</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -105,7 +105,7 @@ export function HomeFooter() {
           <div className="flex items-center gap-4">
             <button
               onClick={scrollToTop}
-              className="p-2.5 rounded-full bg-white border border-black/[0.08] shadow-xs text-gray-700 hover:text-black hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 text-xs font-medium"
+              className="mavly-btn-secondary px-3.5 py-2 text-xs font-medium"
               aria-label="Back to top"
             >
               <span>Back to top</span>

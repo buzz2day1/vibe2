@@ -525,19 +525,19 @@ export default function DashboardPage() {
   const hasProjects = projects.length > 0;
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden mavly-page-enter">
       <div className="fixed inset-0 -z-10" style={{ background: "#fcfbf8" }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
+      <header className="sticky top-0 z-50 bg-[#fcfbf8]/80 backdrop-blur-md border-b border-black/[0.04]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5 group select-none">
             <Image
               src="/logo/Mavly.png"
               alt="Mavly Logo"
               width={28}
               height={28}
-              className="w-7 h-7 rounded-lg object-contain shadow-xs shrink-0"
+              className="w-7 h-7 rounded-lg object-contain shadow-xs shrink-0 transition-transform group-hover:scale-105 active:scale-95"
               priority
               referrerPolicy="no-referrer"
             />
@@ -545,10 +545,10 @@ export default function DashboardPage() {
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/home">
-              <button className="text-xs text-gray-500 hover:text-gray-700 px-2.5 py-1.5 rounded-lg hover:bg-black/5 transition-colors">Home</button>
+              <button className="text-xs text-gray-500 hover:text-gray-900 px-3 py-1.5 rounded-lg hover:bg-black/5 active:scale-95 transition-all">Home</button>
             </Link>
             <Link href="/login">
-              <button className="text-xs text-gray-700 hover:text-gray-950 font-medium px-2.5 py-1.5 rounded-lg hover:bg-black/5 transition-colors">Sign in</button>
+              <button className="text-xs text-gray-900 font-medium px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] shadow-xs hover:bg-neutral-50 active:scale-95 transition-all">Sign in</button>
             </Link>
           </div>
         </div>
@@ -560,7 +560,7 @@ export default function DashboardPage() {
           <div className="w-full max-w-2xl mx-auto">
             <div className="text-center mb-6">
               {!hasProjects && (
-                <div className="w-14 h-14 rounded-2xl mx-auto mb-4 shadow-sm overflow-hidden flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl mx-auto mb-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] overflow-hidden flex items-center justify-center p-1 bg-white border border-black/[0.06]">
                   <Image
                     src="/logo/Mavly.png"
                     alt="Mavly Logo"
@@ -577,7 +577,7 @@ export default function DashboardPage() {
               </h1>
               {!hasProjects && <p className="text-gray-500 max-w-md mx-auto mt-2 text-sm">Describe your app and AI will build it in minutes.</p>}
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-200/60 overflow-hidden">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] border border-black/[0.08] overflow-hidden transition-all duration-200 focus-within:border-black/20 focus-within:shadow-[0_12px_36px_rgba(0,0,0,0.06)]">
               <textarea
                 ref={heroTextareaRef}
                 value={firstPrompt}
@@ -597,9 +597,9 @@ export default function DashboardPage() {
                 items={attachedFiles.map((f) => ({ name: f.name, file: f.file, type: f.file.type, size: f.file.size }))}
                 onRemove={(index) => setAttachedFiles((prev) => prev.filter((_, j) => j !== index))}
               />
-              <div className="flex items-center justify-between px-4 py-2.5 border-t border-gray-100/80">
+              <div className="flex items-center justify-between px-4 py-2.5 border-t border-black/[0.05]">
                 <div className="flex items-center gap-1">
-                  <label className="cursor-pointer flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors px-1.5 py-1 rounded-lg hover:bg-gray-50">
+                  <label className="cursor-pointer flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-800 transition-colors px-2 py-1.5 rounded-lg hover:bg-black/5 active:scale-95">
                     <input type="file" multiple className="hidden" onChange={handleFileSelect} accept="image/*,.pdf,.svg" />
                     {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Paperclip className="w-4 h-4" />}
                     <span className="hidden sm:inline">Attach</span>
@@ -617,8 +617,11 @@ export default function DashboardPage() {
                     disconnectConfirm={t("workspace.figma.disconnectPendingConfirm")}
                   />
                 </div>
-                <button onClick={openBuildModal} disabled={!firstPrompt.trim() && attachedFiles.length === 0}
-                  className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-300 text-white text-xs font-medium px-4 h-8 rounded-xl transition-colors">
+                <button
+                  onClick={openBuildModal}
+                  disabled={!firstPrompt.trim() && attachedFiles.length === 0}
+                  className="mavly-btn-primary px-4 h-8 text-xs font-semibold disabled:opacity-40 disabled:pointer-events-none"
+                >
                   <Send className="w-3.5 h-3.5" /><span>Build</span>
                 </button>
               </div>
@@ -705,7 +708,7 @@ export default function DashboardPage() {
                 {/* ⭐ New project = focus the composer. See `focusComposer`. */}
                 <button
                   onClick={focusComposer}
-                  className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 h-8 px-2.5 rounded-lg border border-gray-200 bg-white/70 hover:bg-white transition-colors"
+                  className="mavly-btn-secondary h-8 px-3 text-xs font-semibold"
                   title="New project"
                 >
                   <Plus className="w-3.5 h-3.5" /> <span className="hidden sm:inline">New</span>
@@ -723,7 +726,7 @@ export default function DashboardPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {pageItems.map((p) => (
                   <Link key={p.projectId} href={`/project/${p.projectId}`}>
-                    <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-xl overflow-hidden hover:shadow-lg hover:bg-white/90 transition-all cursor-pointer group h-full">
+                    <div className="bg-white rounded-2xl border border-black/[0.06] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08)] hover:border-black/[0.12] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 overflow-hidden cursor-pointer group h-full">
                       <div className="h-32 relative overflow-hidden">
                         <ProjectThumbnail project={p} />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors pointer-events-none" />

@@ -38,14 +38,14 @@ function LoginForm() {
   }, [initialProvider]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans selection:bg-neutral-900 selection:text-white">
+    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans selection:bg-neutral-900 selection:text-white mavly-page-enter">
       {/* ── Top Navigation Row ── */}
       <header className="w-full border-b border-black/[0.05] bg-white/70 backdrop-blur-md sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
           {/* Left Side: Back to Mavly */}
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black transition-colors py-2 px-1 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black transition-colors py-2 px-2.5 rounded-xl hover:bg-black/[0.04] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
           >
             <ArrowLeft className="w-4 h-4 text-gray-500 group-hover:text-black transition-colors" />
             <span>Back to Mavly</span>
@@ -54,10 +54,10 @@ function LoginForm() {
           {/* Right Side: Official Mavly Logo */}
           <Link
             href="/home"
-            className="flex items-center gap-2.5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 p-1 group"
+            className="flex items-center gap-2.5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 p-1 group select-none"
             aria-label="Mavly Home"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shrink-0">
               <Image
                 src="/logo/Mavly.png"
                 alt="Mavly Logo"
@@ -77,10 +77,10 @@ function LoginForm() {
 
       {/* ── Central Authentication Card ── */}
       <main className="flex-1 flex items-center justify-center px-4 py-10 sm:py-16">
-        <div className="w-full max-w-[420px] bg-white rounded-2xl sm:rounded-3xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-7 sm:p-10 transition-all">
+        <div className="w-full max-w-[420px] bg-white rounded-2xl sm:rounded-3xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.02)] p-7 sm:p-10 transition-all">
           {/* A. Mavly Logo at top of the card */}
           <div className="flex flex-col items-center text-center">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden bg-white shadow-xs p-1 border border-black/[0.08] flex items-center justify-center mb-5 sm:mb-6 transition-transform hover:scale-105 duration-200 shrink-0">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden bg-white shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-1 border border-black/[0.08] flex items-center justify-center mb-5 sm:mb-6 transition-transform hover:scale-105 duration-200 shrink-0 select-none">
               <Image
                 src="/logo/Mavly.png"
                 alt="Mavly Logo"
@@ -110,7 +110,7 @@ function LoginForm() {
               type="button"
               disabled={!!loadingProvider}
               onClick={() => handleOAuthLogin("google")}
-              className="w-full h-12 px-4 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-sm flex items-center justify-center gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-sm flex items-center justify-center gap-3 shadow-[0_4px_14px_rgba(0,0,0,0.14),0_1px_2px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.25)] transition-all duration-200 disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer select-none"
             >
               {loadingProvider === "google" ? (
                 <Loader2 className="w-4 h-4 animate-spin text-white" />
@@ -142,7 +142,7 @@ function LoginForm() {
               type="button"
               disabled={!!loadingProvider}
               onClick={() => handleOAuthLogin("github")}
-              className="w-full h-12 px-4 rounded-xl bg-white hover:bg-neutral-50 text-gray-900 border border-gray-200 hover:border-gray-300 font-medium text-sm flex items-center justify-center gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl bg-white hover:bg-neutral-50 text-gray-900 border border-black/[0.1] hover:border-black/[0.18] font-medium text-sm flex items-center justify-center gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] transition-all duration-200 disabled:opacity-70 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 cursor-pointer select-none"
             >
               {loadingProvider === "github" ? (
                 <Loader2 className="w-4 h-4 animate-spin text-gray-900" />

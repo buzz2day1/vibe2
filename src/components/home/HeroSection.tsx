@@ -1,305 +1,302 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 // ── Complete 19 ImageKit Assets Data Source ───────────────────────────────────
-export const HERO_SHOWCASE_ASSETS = [
-  { id: "img-01", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.05%E2%80%AFPM.png", label: "Artisanal Bakery & Bakehouse" },
-  { id: "img-02", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.47%E2%80%AFPM.png", label: "Minimalist Stationery & Goods" },
-  { id: "img-03", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.34%E2%80%AFPM.png", label: "Strategic Advisory & Consulting" },
-  { id: "img-04", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.06%E2%80%AFPM.png", label: "Sprout Botanical Boutique" },
-  { id: "img-05", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.14%E2%80%AFPM.png", label: "Certified Auto Care & Service" },
-  { id: "img-06", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.45%E2%80%AFPM.png", label: "Roy Pratt Fitness Studio" },
-  { id: "img-07", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.12.06%E2%80%AFPM.png", label: "Autonomous Electric Mobility" },
-  { id: "img-08", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.29%E2%80%AFPM.png", label: "La Perla Luxury Architecture" },
-  { id: "img-09", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.12%E2%80%AFPM.png", label: "Nimbus Commute & Impact Transit" },
-  { id: "img-10", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.04%E2%80%AFPM.png", label: "Enterprise Tech Consulting" },
-  { id: "img-11", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.16%E2%80%AFPM.png", label: "Next-Gen Fintech App" },
-  { id: "img-12", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.25%E2%80%AFPM.png", label: "Creative Agency Case Studies" },
-  { id: "img-13", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.04.59%E2%80%AFPM.png", label: "Serene Wellness & Spa Sanctuary" },
-  { id: "img-14", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.30%E2%80%AFPM.png", label: "Independent Editorial Journal" },
-  { id: "img-15", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.00%E2%80%AFPM.png", label: "Developer Cloud Tooling Platform" },
-  { id: "img-16", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.33%E2%80%AFPM.png", label: "Gourmet Tasting Room & Cellar" },
-  { id: "img-17", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.29%E2%80%AFPM.png", label: "Contemporary Fashion Lookbook" },
-  { id: "img-18", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.16%E2%80%AFPM.png", label: "Sustainable Energy Dashboard" },
-  { id: "img-19", url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.53%E2%80%AFPM.png", label: "Brand Design & System Lab" },
-];
-
-interface SlotConfig {
+export interface ShowcaseAsset {
   id: string;
-  primaryIndex: number;
-  secondaryIndex: number;
-  desktopStyle: {
-    top?: string;
-    bottom?: string;
-    left?: string;
-    right?: string;
-    width: string;
-    zIndex: number;
-  };
-  baseRot: number; // in degrees
-  floatClass: string;
-  parallaxFactor: number;
+  url: string;
+  label: string;
+  aspectClass: string;
+  widthClass: string;
+  staticRotDeg: number;
 }
 
-// 10 spatially distributed slots that seamlessly incorporate all 19 images
-const DESKTOP_SLOTS: SlotConfig[] = [
-  // 1. Top-Left (Bakery / Fintech)
+export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
+  // Group A (Upper-Left Strip: Images 01 to 09)
   {
-    id: "slot-tl",
-    primaryIndex: 0, // Image 01
-    secondaryIndex: 10, // Image 11
-    desktopStyle: { top: "-10px", left: "-20px", width: "360px", zIndex: 12 },
-    baseRot: -7,
-    floatClass: "mavly-float-1",
-    parallaxFactor: 14,
+    id: "img-01",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.05%E2%80%AFPM.png",
+    label: "Artisanal Bakery & Bakehouse",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
+    staticRotDeg: -1.2,
   },
-  // 2. Top Center-Left (Stationery / Creative Agency)
   {
-    id: "slot-tcl",
-    primaryIndex: 1, // Image 02
-    secondaryIndex: 11, // Image 12
-    desktopStyle: { top: "-25px", left: "22%", width: "310px", zIndex: 10 },
-    baseRot: -3,
-    floatClass: "mavly-float-2",
-    parallaxFactor: 9,
+    id: "img-02",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.47%E2%80%AFPM.png",
+    label: "Minimalist Stationery & Goods",
+    aspectClass: "aspect-[4/3]",
+    widthClass: "w-[210px] sm:w-[240px] lg:w-[270px]",
+    staticRotDeg: 0,
   },
-  // 3. Top Center-Right (Advisory / Wellness)
   {
-    id: "slot-tcr",
-    primaryIndex: 2, // Image 03
-    secondaryIndex: 12, // Image 13
-    desktopStyle: { top: "-20px", right: "22%", width: "310px", zIndex: 10 },
-    baseRot: 3,
-    floatClass: "mavly-float-3",
-    parallaxFactor: 9,
+    id: "img-03",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.34%E2%80%AFPM.png",
+    label: "Strategic Advisory & Consulting",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
+    staticRotDeg: 1.0,
   },
-  // 4. Top-Right (Sprout Plant / Editorial Journal)
   {
-    id: "slot-tr",
-    primaryIndex: 3, // Image 04
-    secondaryIndex: 13, // Image 14
-    desktopStyle: { top: "-10px", right: "-20px", width: "370px", zIndex: 12 },
-    baseRot: 6,
-    floatClass: "mavly-float-4",
-    parallaxFactor: 15,
+    id: "img-04",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.06%E2%80%AFPM.png",
+    label: "Sprout Botanical Boutique",
+    aspectClass: "aspect-[16/11]",
+    widthClass: "w-[220px] sm:w-[260px] lg:w-[280px]",
+    staticRotDeg: -0.8,
   },
-  // 5. Middle-Left (Auto Repair / Dev Cloud Tooling)
   {
-    id: "slot-ml",
-    primaryIndex: 4, // Image 05
-    secondaryIndex: 14, // Image 15
-    desktopStyle: { top: "35%", left: "-40px", width: "370px", zIndex: 14 },
-    baseRot: -4,
-    floatClass: "mavly-float-2",
-    parallaxFactor: 18,
+    id: "img-05",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.14%E2%80%AFPM.png",
+    label: "Certified Auto Care & Service",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[260px] sm:w-[300px] lg:w-[330px]",
+    staticRotDeg: 0.5,
   },
-  // 6. Middle-Right (Roy Pratt Fitness / Gourmet Dining)
   {
-    id: "slot-mr",
-    primaryIndex: 5, // Image 06
-    secondaryIndex: 15, // Image 16
-    desktopStyle: { top: "33%", right: "-40px", width: "370px", zIndex: 14 },
-    baseRot: 4,
-    floatClass: "mavly-float-1",
-    parallaxFactor: 18,
+    id: "img-06",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.45%E2%80%AFPM.png",
+    label: "Roy Pratt Fitness Studio",
+    aspectClass: "aspect-[4/3]",
+    widthClass: "w-[210px] sm:w-[250px] lg:w-[275px]",
+    staticRotDeg: -1.0,
   },
-  // 7. Bottom-Left (Mobility / Fashion Lookbook)
   {
-    id: "slot-bl",
-    primaryIndex: 6, // Image 07
-    secondaryIndex: 16, // Image 17
-    desktopStyle: { bottom: "-10px", left: "-30px", width: "340px", zIndex: 13 },
-    baseRot: -5,
-    floatClass: "mavly-float-3",
-    parallaxFactor: 16,
+    id: "img-07",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.12.06%E2%80%AFPM.png",
+    label: "Autonomous Electric Mobility",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
+    staticRotDeg: 1.2,
   },
-  // 8. Bottom Center-Left (La Perla Architecture / Sustainable Energy)
   {
-    id: "slot-bcl",
-    primaryIndex: 7, // Image 08
-    secondaryIndex: 17, // Image 18
-    desktopStyle: { bottom: "-30px", left: "20%", width: "290px", zIndex: 11 },
-    baseRot: -2,
-    floatClass: "mavly-float-4",
-    parallaxFactor: 10,
+    id: "img-08",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.29%E2%80%AFPM.png",
+    label: "La Perla Luxury Architecture",
+    aspectClass: "aspect-[16/11]",
+    widthClass: "w-[230px] sm:w-[270px] lg:w-[295px]",
+    staticRotDeg: -0.5,
   },
-  // 9. Bottom Center-Right (Nimbus Commute / Digital Studio Lab)
   {
-    id: "slot-bcr",
-    primaryIndex: 8, // Image 09
-    secondaryIndex: 18, // Image 19
-    desktopStyle: { bottom: "-30px", right: "20%", width: "290px", zIndex: 11 },
-    baseRot: 2,
-    floatClass: "mavly-float-1",
-    parallaxFactor: 10,
+    id: "img-09",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.12%E2%80%AFPM.png",
+    label: "Nimbus Commute & Impact Transit",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
+    staticRotDeg: 0.4,
   },
-  // 10. Bottom-Right (Tech Consulting)
+
+  // Group B (Bottom-Right Strip: Images 10 to 19)
   {
-    id: "slot-br",
-    primaryIndex: 9, // Image 10
-    secondaryIndex: 9, // Image 10 (stable anchor)
-    desktopStyle: { bottom: "-10px", right: "-30px", width: "340px", zIndex: 13 },
-    baseRot: 5,
-    floatClass: "mavly-float-2",
-    parallaxFactor: 16,
+    id: "img-10",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.04%E2%80%AFPM.png",
+    label: "Enterprise Tech Consulting",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
+    staticRotDeg: 0.8,
+  },
+  {
+    id: "img-11",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.16%E2%80%AFPM.png",
+    label: "Next-Gen Fintech App",
+    aspectClass: "aspect-[16/11]",
+    widthClass: "w-[220px] sm:w-[260px] lg:w-[285px]",
+    staticRotDeg: -1.2,
+  },
+  {
+    id: "img-12",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.25%E2%80%AFPM.png",
+    label: "Creative Agency Case Studies",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[260px] sm:w-[300px] lg:w-[330px]",
+    staticRotDeg: 0.5,
+  },
+  {
+    id: "img-13",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.04.59%E2%80%AFPM.png",
+    label: "Serene Wellness & Spa Sanctuary",
+    aspectClass: "aspect-[4/3]",
+    widthClass: "w-[210px] sm:w-[245px] lg:w-[270px]",
+    staticRotDeg: -0.7,
+  },
+  {
+    id: "img-14",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.30%E2%80%AFPM.png",
+    label: "Independent Editorial Journal",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
+    staticRotDeg: 1.0,
+  },
+  {
+    id: "img-15",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.00%E2%80%AFPM.png",
+    label: "Developer Cloud Tooling Platform",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[250px] sm:w-[290px] lg:w-[325px]",
+    staticRotDeg: -0.6,
+  },
+  {
+    id: "img-16",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.33%E2%80%AFPM.png",
+    label: "Gourmet Tasting Room & Cellar",
+    aspectClass: "aspect-[16/11]",
+    widthClass: "w-[220px] sm:w-[260px] lg:w-[285px]",
+    staticRotDeg: 1.1,
+  },
+  {
+    id: "img-17",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.29%E2%80%AFPM.png",
+    label: "Contemporary Fashion Lookbook",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[260px] sm:w-[305px] lg:w-[335px]",
+    staticRotDeg: -0.8,
+  },
+  {
+    id: "img-18",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.16%E2%80%AFPM.png",
+    label: "Sustainable Energy Dashboard",
+    aspectClass: "aspect-[4/3]",
+    widthClass: "w-[210px] sm:w-[245px] lg:w-[270px]",
+    staticRotDeg: 0.6,
+  },
+  {
+    id: "img-19",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.53%E2%80%AFPM.png",
+    label: "Brand Design & System Lab",
+    aspectClass: "aspect-[16/10]",
+    widthClass: "w-[240px] sm:w-[280px] lg:w-[315px]",
+    staticRotDeg: -0.9,
   },
 ];
 
-export function HeroSection() {
-  // Staggered crossfade cycling states for slots with secondary images
-  // Map of slot ID -> true if secondary image is currently active
-  const [slotToggles, setSlotToggles] = useState<Record<string, boolean>>({});
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
+// Distribution: Group A has 9 unique assets (0..9); Group B has 10 unique assets (9..19)
+const GROUP_A_ASSETS = HERO_SHOWCASE_ASSETS.slice(0, 9);
+const GROUP_B_ASSETS = HERO_SHOWCASE_ASSETS.slice(9, 19);
 
-  // Check reduced motion preference
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setIsReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  // Parallax tracking on desktop
-  useEffect(() => {
-    if (isReducedMotion) return;
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth < 1024) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      setParallax({ x, y });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isReducedMotion]);
-
-  // Gentle, staggered slot transitions so that all 19 images are showcased over time
-  useEffect(() => {
-    if (isReducedMotion) return;
-
-    // Transition slots with alternate images on staggered 5-8 second timers
-    const slotsToCycle = DESKTOP_SLOTS.filter(
-      (slot) => slot.primaryIndex !== slot.secondaryIndex
-    );
-
-    let activeCycleIndex = 0;
-    const interval = setInterval(() => {
-      const slot = slotsToCycle[activeCycleIndex % slotsToCycle.length];
-      if (slot) {
-        setSlotToggles((prev) => ({
-          ...prev,
-          [slot.id]: !prev[slot.id],
-        }));
-      }
-      activeCycleIndex++;
-    }, 4500);
-
-    return () => clearInterval(interval);
-  }, [isReducedMotion]);
-
+/**
+ * Clean Soft UI Website Preview Card for the sliding tracks
+ */
+function HeroCard({
+  card,
+  isClone = false,
+  priority = false,
+}: {
+  card: ShowcaseAsset;
+  isClone?: boolean;
+  priority?: boolean;
+}) {
   return (
-    <section
-      ref={heroRef}
-      className="relative pt-28 pb-20 md:pt-36 md:pb-36 overflow-hidden bg-[#faf9f6]/80 selection:bg-neutral-900 selection:text-white"
+    <div
+      className={`shrink-0 ${card.widthClass}`}
+      style={{
+        transform: `rotate(${card.staticRotDeg}deg)`,
+      }}
+      aria-hidden={isClone}
     >
-      {/* Subtle Ambient Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-gradient-to-b from-black/[0.02] to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="rounded-2xl bg-white p-2 sm:p-2.5 border border-black/[0.08] shadow-[0_12px_28px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] transition-shadow duration-300">
+        {/* Subtle Browser Chrome */}
+        <div className="flex items-center justify-between px-1.5 pb-2 mb-1.5 border-b border-black/[0.05]">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-stone-300" />
+            <span className="w-2 h-2 rounded-full bg-stone-300" />
+            <span className="w-2 h-2 rounded-full bg-stone-300" />
+          </div>
+          <span className="text-[10px] font-medium text-stone-400 truncate max-w-[150px]">
+            {card.label}
+          </span>
+        </div>
 
-      {/* ── DESKTOP & TABLET: Floating Website Showcase Canvas ── */}
+        {/* Website Image Container */}
+        <div className={`relative w-full ${card.aspectClass} rounded-xl overflow-hidden bg-stone-100`}>
+          <Image
+            src={card.url}
+            alt={isClone ? "" : card.label}
+            fill
+            sizes="(max-width: 640px) 240px, (max-width: 1024px) 290px, 335px"
+            priority={priority}
+            className="object-cover object-top"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function HeroSection() {
+  return (
+    <section className="relative pt-24 pb-20 sm:pt-32 sm:pb-28 md:pt-36 md:pb-36 overflow-hidden bg-[#faf9f6]/90 selection:bg-neutral-900 selection:text-white">
+      {/* Ambient Radial Depth Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-gradient-to-b from-black/[0.02] to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* ── GROUP A: Upper-Left Sliding Strip (Slides Smoothly Right-to-Left) ── */}
       <div
-        className="absolute inset-0 pointer-events-none overflow-hidden max-w-[1720px] mx-auto select-none hidden lg:block"
+        className="absolute top-2 sm:top-5 md:top-8 left-0 w-full sm:w-[50vw] lg:w-[44vw] xl:w-[41vw] max-w-[660px] overflow-hidden pointer-events-none z-10 opacity-75 sm:opacity-90 lg:opacity-100 [mask-image:linear-gradient(to_right,black_75%,transparent)]"
         aria-hidden="true"
       >
-        {DESKTOP_SLOTS.map((slot) => {
-          const isFlipped = !!slotToggles[slot.id];
-          const primaryAsset = HERO_SHOWCASE_ASSETS[slot.primaryIndex];
-          const secondaryAsset = HERO_SHOWCASE_ASSETS[slot.secondaryIndex];
-          const activeAsset = isFlipped ? secondaryAsset : primaryAsset;
+        <div className="flex w-max mavly-track-left">
+          {/* Track 1: Unique Items */}
+          <div className="flex gap-4 sm:gap-5 pr-4 sm:pr-5 shrink-0 items-center">
+            {GROUP_A_ASSETS.map((card, idx) => (
+              <HeroCard
+                key={card.id}
+                card={card}
+                priority={idx < 2}
+              />
+            ))}
+          </div>
 
-          // Parallax transform calculation
-          const offsetX = parallax.x * slot.parallaxFactor;
-          const offsetY = parallax.y * slot.parallaxFactor;
-
-          return (
-            <div
-              key={slot.id}
-              className="absolute pointer-events-auto transition-transform duration-300 ease-out group"
-              style={{
-                ...slot.desktopStyle,
-                transform: `translate3d(${offsetX}px, ${offsetY}px, 0)`,
-              }}
-            >
-              {/* Inner card with float animation and resting rotation */}
-              <div
-                className={`mavly-floating-card rounded-2xl sm:rounded-3xl bg-white p-2.5 sm:p-3 border border-black/[0.08] shadow-[0_18px_40px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:shadow-[0_26px_60px_rgba(0,0,0,0.15),0_6px_16px_rgba(0,0,0,0.08)] hover:border-black/[0.16] hover:scale-[1.03] transition-all duration-300 ease-out relative overflow-hidden ${
-                  !isReducedMotion ? slot.floatClass : ""
-                }`}
-                style={
-                  {
-                    "--rot": `${slot.baseRot}deg`,
-                    transform: `rotate(${slot.baseRot}deg)`,
-                    animationDuration: `${7 + (slot.primaryIndex % 5)}s`,
-                  } as React.CSSProperties
-                }
-              >
-                {/* Minimalist Browser Frame Bar */}
-                <div className="flex items-center justify-between px-2 pb-2 mb-1.5 border-b border-black/[0.05]">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-rose-400 transition-colors" />
-                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-amber-400 transition-colors" />
-                    <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:bg-emerald-400 transition-colors" />
-                  </div>
-                  <span className="text-[10px] font-medium text-stone-400 truncate max-w-[170px]">
-                    {activeAsset?.label}
-                  </span>
-                </div>
-
-                {/* Website Preview Image Container */}
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-stone-100">
-                  {/* Primary Image */}
-                  <Image
-                    src={primaryAsset.url}
-                    alt={primaryAsset.label}
-                    fill
-                    sizes="(max-width: 1400px) 380px, 440px"
-                    priority={slot.primaryIndex < 4}
-                    className={`object-cover object-top transition-opacity duration-1000 ease-in-out ${
-                      isFlipped ? "opacity-0" : "opacity-100"
-                    }`}
-                    referrerPolicy="no-referrer"
-                  />
-
-                  {/* Secondary Image for smooth crossfade cycling */}
-                  {slot.primaryIndex !== slot.secondaryIndex && (
-                    <Image
-                      src={secondaryAsset.url}
-                      alt={secondaryAsset.label}
-                      fill
-                      sizes="(max-width: 1400px) 380px, 440px"
-                      className={`object-cover object-top transition-opacity duration-1000 ease-in-out ${
-                        isFlipped ? "opacity-100" : "opacity-0"
-                      }`}
-                      referrerPolicy="no-referrer"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+          {/* Track 2: Seamless Clone for Continuous Infinite Loop */}
+          <div className="flex gap-4 sm:gap-5 pr-4 sm:pr-5 shrink-0 items-center" aria-hidden="true">
+            {GROUP_A_ASSETS.map((card) => (
+              <HeroCard
+                key={`clone-a-${card.id}`}
+                card={card}
+                isClone
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* ── Main Center Content ── */}
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-20 pointer-events-auto">
-        {/* Brand Logo */}
+      {/* ── GROUP B: Bottom-Right Sliding Strip (Slides Smoothly Left-to-Right) ── */}
+      <div
+        className="absolute bottom-2 sm:bottom-5 md:bottom-8 right-0 w-full sm:w-[50vw] lg:w-[44vw] xl:w-[41vw] max-w-[660px] overflow-hidden pointer-events-none z-10 opacity-75 sm:opacity-90 lg:opacity-100 [mask-image:linear-gradient(to_left,black_75%,transparent)]"
+        aria-hidden="true"
+      >
+        <div className="flex w-max mavly-track-right">
+          {/* Track 1: Unique Items */}
+          <div className="flex gap-4 sm:gap-5 pr-4 sm:pr-5 shrink-0 items-center">
+            {GROUP_B_ASSETS.map((card, idx) => (
+              <HeroCard
+                key={card.id}
+                card={card}
+                priority={idx < 2}
+              />
+            ))}
+          </div>
+
+          {/* Track 2: Seamless Clone for Continuous Infinite Loop */}
+          <div className="flex gap-4 sm:gap-5 pr-4 sm:pr-5 shrink-0 items-center" aria-hidden="true">
+            {GROUP_B_ASSETS.map((card) => (
+              <HeroCard
+                key={`clone-b-${card.id}`}
+                card={card}
+                isClone
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── STABLE CENTRAL HERO CONTENT (Primary Focal Point, Unobstructed & Static) ── */}
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center z-20 pointer-events-auto">
+        {/* Official Mavly Logo */}
         <div className="flex items-center justify-center mb-6 sm:mb-8">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl overflow-hidden bg-white shadow-md p-1.5 border border-black/[0.08] flex items-center justify-center transition-transform hover:scale-105 duration-200 shrink-0">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl overflow-hidden bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06),0_2px_6px_rgba(0,0,0,0.02)] p-1.5 border border-black/[0.08] flex items-center justify-center shrink-0 transition-transform duration-300 hover:scale-105 select-none">
             <Image
               src="/logo/Mavly.png"
               alt="Mavly Logo"
@@ -323,12 +320,12 @@ export function HeroSection() {
           Mavly is an AI website builder that turns your ideas into beautiful, functional websites. We don&apos;t make websites. We make memories.
         </p>
 
-        {/* Authentication Buttons directly below the supporting description */}
+        {/* Authentication Buttons directly beneath the supporting description */}
         <div className="mt-8 flex flex-col items-center gap-3 w-full max-w-sm mx-auto">
-          {/* Button 1: Continue with Google */}
+          {/* Button 1: Continue with Google (Primary dark appearance) */}
           <Link
             href="/login?provider=google"
-            className="w-full h-12 rounded-full bg-black hover:bg-neutral-800 text-white font-medium text-sm flex items-center justify-center gap-3 shadow-md hover:shadow-lg transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+            className="w-full h-12 rounded-full bg-black hover:bg-neutral-800 text-white font-medium text-sm flex items-center justify-center gap-3 shadow-[0_4px_14px_rgba(0,0,0,0.14),0_1px_2px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.25)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 select-none"
           >
             <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -351,10 +348,10 @@ export function HeroSection() {
             <span>Continue with Google</span>
           </Link>
 
-          {/* Button 2: Continue with GitHub */}
+          {/* Button 2: Continue with GitHub (White/neutral appearance) */}
           <Link
             href="/login?provider=github"
-            className="w-full h-12 rounded-full bg-white hover:bg-neutral-50 text-gray-900 border border-gray-200 font-medium text-sm flex items-center justify-center gap-3 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+            className="w-full h-12 rounded-full bg-white hover:bg-neutral-50 text-gray-900 border border-black/[0.1] font-medium text-sm flex items-center justify-center gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 select-none"
           >
             <svg className="w-4 h-4 shrink-0 fill-current text-gray-900" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -377,45 +374,6 @@ export function HeroSection() {
               Privacy Policy
             </Link>
           </p>
-        </div>
-      </div>
-
-      {/* ── MOBILE & TABLET: Curated Floating Showcase Strip ── */}
-      <div className="mt-14 px-4 lg:hidden relative z-10">
-        <div className="text-center mb-4">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
-            Created with Mavly AI
-          </span>
-        </div>
-        <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-2 scrollbar-none snap-x snap-mandatory">
-          {HERO_SHOWCASE_ASSETS.map((asset, idx) => (
-            <div
-              key={asset.id}
-              className="shrink-0 w-[260px] sm:w-[300px] snap-center rounded-2xl bg-white p-2.5 border border-black/[0.08] shadow-md"
-            >
-              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-black/[0.05]">
-                <div className="flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                </div>
-                <span className="text-[9px] font-medium text-stone-400 truncate max-w-[160px]">
-                  {asset.label}
-                </span>
-              </div>
-              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-stone-100">
-                <Image
-                  src={asset.url}
-                  alt={asset.label}
-                  fill
-                  sizes="300px"
-                  priority={idx < 2}
-                  className="object-cover object-top"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

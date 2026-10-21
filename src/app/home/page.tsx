@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-gray-950">
+    <div className="min-h-screen bg-white text-gray-950 mavly-page-enter">
       {/* Navigation */}
       <HomeNavigation />
 

@@ -23,13 +23,13 @@ export function PricingSection() {
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Card 1: Starter / Free Tier */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border-2 border-black shadow-lg flex flex-col justify-between relative">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border-2 border-black shadow-[0_12px_36px_-6px_rgba(0,0,0,0.08)] flex flex-col justify-between relative hover:shadow-[0_16px_44px_-6px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
             <div>
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
                   Starter
                 </span>
-                <span className="px-3 py-1 rounded-full bg-black text-white text-[10px] font-bold tracking-wide uppercase">
+                <span className="px-3 py-1 rounded-full bg-black text-white text-[10px] font-bold tracking-wide uppercase shadow-xs">
                   Popular
                 </span>
               </div>
@@ -65,7 +65,7 @@ export function PricingSection() {
             <div className="mt-8 pt-6 border-t border-black/[0.06]">
               <Link
                 href="/login"
-                className="w-full py-3.5 rounded-full text-xs font-semibold bg-black hover:bg-neutral-800 text-white transition-all flex items-center justify-center gap-2 active:scale-98 shadow-sm"
+                className="mavly-btn-primary w-full py-3.5 text-xs font-semibold"
               >
                 <span>Start Building Free</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -77,7 +77,7 @@ export function PricingSection() {
           </div>
 
           {/* Card 2: Pro & Teams */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.08] shadow-xs flex flex-col justify-between">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.08] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:shadow-[0_10px_30px_-4px_rgba(0,0,0,0.07)] hover:border-black/[0.14] hover:-translate-y-1 transition-all duration-300">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Production Scale
@@ -114,7 +114,7 @@ export function PricingSection() {
             <div className="mt-8 pt-6 border-t border-black/[0.06]">
               <Link
                 href="/login"
-                className="w-full py-3.5 rounded-full text-xs font-semibold bg-white hover:bg-neutral-50 text-gray-900 border border-black/[0.12] transition-all flex items-center justify-center gap-2 active:scale-98 shadow-xs"
+                className="mavly-btn-secondary w-full py-3.5 text-xs font-semibold"
               >
                 <span>Get Started with Pro</span>
                 <ArrowRight className="w-3.5 h-3.5" />

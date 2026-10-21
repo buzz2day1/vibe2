@@ -79,10 +79,10 @@ export function FeaturesSection() {
             return (
               <div
                 key={idx}
-                className="p-8 sm:p-10 rounded-3xl bg-[#faf9f6] border border-black/[0.06] shadow-xs flex flex-col justify-between hover:border-black/[0.12] transition-colors"
+                className="p-8 sm:p-10 rounded-3xl bg-[#faf9f6] border border-black/[0.06] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_-4px_rgba(0,0,0,0.07)] hover:border-black/[0.12] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-black/[0.08] shadow-xs flex items-center justify-center text-black mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.04)] flex items-center justify-center text-black mb-6 transition-transform duration-200 group-hover:scale-105">
                     <Icon className="w-6 h-6" />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
@@ -109,7 +109,7 @@ export function FeaturesSection() {
         </div>
 
         {/* Bottom Callout Banner */}
-        <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-black text-white text-center flex flex-col items-center justify-center">
+        <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-black text-white text-center flex flex-col items-center justify-center shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
           <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Ready to bring your ideas to life?
           </h3>
@@ -118,7 +118,7 @@ export function FeaturesSection() {
           </p>
           <Link
             href="/login"
-            className="mt-6 px-6 py-3 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-100 transition-colors inline-flex items-center gap-2 active:scale-95"
+            className="mavly-btn-secondary mt-6 px-6 py-3 text-xs font-semibold"
           >
             <span>Start Building with Mavly</span>
             <ArrowRight className="w-4 h-4" />

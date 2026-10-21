@@ -1,0 +1,938 @@
+# MAVLY — Complete Website-Wide UI Consistency, Neumorphism & Motion Transformation
+
+## PRIMARY OBJECTIVE
+
+Transform the existing Mavly application into a cohesive, polished, premium-quality product experience.
+
+The current website has inconsistent UI components, slightly different colours and visual styles across sections, inconsistent buttons, awkward component designs, and missing page-entry and interaction animations.
+
+Your task is to systematically audit and improve the entire existing frontend so that every page, section, component, button, and interaction follows one consistent design system.
+
+This is a website-wide frontend refinement, not a backend rewrite or a new application.
+
+The desired result should feel carefully engineered, visually cohesive, responsive, accessible, tactile, and premium.
+
+**Do not merely add a few hover effects. Inspect the complete application, identify inconsistencies, implement a reusable design and motion system, apply it throughout the frontend, and verify the actual results.**
+
+# NON-NEGOTIABLE RULES
+
+## 1. 🎨 Colour inspection first
+
+Before changing any colour, inspect the existing project's actual colour palette, CSS variables, theme configuration, shared components, global styles, and typography.
+
+Do not prescribe or invent a new colour palette.
+
+Do not blindly introduce a new theme, arbitrary gradients, unrelated accent colours, or hardcoded colour values.
+
+Use the existing Mavly design system consistently throughout the entire application.
+
+If the project supports multiple themes, preserve them and ensure all changes work correctly across the supported themes.
+
+If additional design tokens are genuinely required, derive them from the existing system instead of introducing an unrelated visual identity.
+
+## 2. ✨ Neumorphism / Soft UI
+
+Use the existing design system's colours to create a refined Neumorphic / Soft UI experience.
+
+Use subtle, controlled effects such as:
+
+- Soft dual-light and dual-dark shadows.
+- Gently elevated cards and surfaces.
+- Tactile, extruded buttons.
+- Pressed or inset interaction states.
+- Subtle depth between related interface layers.
+- Consistent borders and corner radii.
+- Smooth, natural transitions between interaction states.
+
+The result must look premium and intentional, not like every element has been given an exaggerated shadow.
+
+Maintain readability, clear control boundaries, sufficient contrast, and accessibility.
+
+Do not apply the same heavy shadow treatment to every element. Use elevation according to each component's purpose.
+
+## 3. 🔒 Strict frontend-only scope
+
+**Do not modify the backend, API routes, server logic, database, authentication configuration, environment variables, integrations, or business logic.**
+
+Only make changes necessary to improve the existing frontend presentation, frontend interactions, animations, component styling, and routing transitions where supported.
+
+Preserve every existing application capability and its underlying implementation.
+
+Do not replace the existing application with a new template.
+
+---
+
+# PHASE 1 — COMPLETE FRONTEND AUDIT
+
+Before implementing changes, inspect the repository and map the entire existing frontend.
+
+Do not start by randomly replacing components or adding global animation styles.
+
+## 1. Inspect all pages and routes
+
+Discover every existing frontend route and page, including:
+
+- Public pages.
+- The existing homepage at `/home`.
+- The existing login page at `/login`.
+- Dashboard and authenticated application pages.
+- Settings, account, project, editor, or builder pages where they exist.
+- Pricing and informational pages.
+- Nested routes.
+- Existing error, loading, and empty states.
+- Shared layouts and page-level navigation.
+
+These examples are an inspection checklist, not permission to invent pages that do not exist.
+
+Use the repository's actual routing configuration to establish the complete list.
+
+Do not omit a page just because it has a different layout or is accessible only after authentication.
+
+Inspect relevant shared components and their dependencies before changing them.
+
+## 2. Inspect every section and component
+
+Identify inconsistent elements throughout the frontend.
+
+Pay particular attention to:
+
+- Navigation bars and sidebars.
+- Page headers and section headings.
+- Buttons and icon buttons.
+- Cards and panels.
+- Inputs, textareas, selects, and checkboxes.
+- Form layouts and validation messages.
+- Tabs, accordions, dropdowns, and popovers.
+- Modals and confirmation dialogs.
+- Tooltips and contextual menus.
+- Tables, lists, and empty states.
+- Loading indicators and skeleton screens.
+- Error and success states.
+- Toast notifications.
+- Pricing and FAQ components.
+- Builder and editor controls.
+- Scrollbars and overflow containers, where custom styling exists.
+- Focus, hover, pressed, disabled, and loading states.
+
+Find components that look unrelated, overly decorative, inconsistent, poorly aligned, unnecessarily complicated, or disconnected from Mavly's brand.
+
+Remove or refactor awkward components only when appropriate to the intended functionality.
+
+Do not remove useful capabilities merely because a component looks different from the others.
+
+## 3. Inspect the existing technical implementation
+
+Identify:
+
+- Frontend framework and routing mechanism.
+- CSS architecture and design-token definitions.
+- Existing component library and reusable components.
+- Installed animation libraries.
+- Current page-transition and scroll-animation behaviour.
+- Existing client-side state management.
+- Icon libraries.
+- Existing accessibility conventions.
+- Available testing and visual verification tools.
+
+Reuse existing infrastructure wherever possible.
+
+Avoid introducing new dependencies for effects that can be implemented cleanly with existing components and CSS.
+
+## 4. Produce an internal implementation checklist
+
+Before changing the UI, establish:
+
+- All routes that need visual review.
+- Existing shared components that should be standardised.
+- Inconsistent styling and interaction patterns.
+- Missing animations and feedback states.
+- Existing behaviours that must be preserved.
+
+Use this checklist to guide the implementation and final verification.
+
+Do not stop after producing the checklist. Complete the actual changes.
+
+---
+
+# PHASE 2 — ESTABLISH ONE CONSISTENT MAVLY DESIGN SYSTEM
+
+The entire website must look like one coherent product, even when different pages serve different purposes.
+
+The login page, homepage, dashboard, editor, settings, and other existing pages should not look as though they were created from unrelated templates.
+
+## 1. Centralise and reuse existing design tokens
+
+Use existing design tokens wherever possible.
+
+Standardise the use of:
+
+- Brand colours and neutral colours.
+- Surface colours and backgrounds.
+- Typography and text hierarchy.
+- Font weights and line heights.
+- Spacing and layout conventions.
+- Border colours and widths.
+- Corner radii.
+- Shadows and elevation levels.
+- Button dimensions.
+- Icon sizing and alignment.
+- Focus indicators.
+- Motion timing and easing.
+- Responsive breakpoints.
+
+If an existing concept is represented inconsistently across multiple stylesheets, consolidate it carefully without causing unrelated regressions.
+
+Avoid duplicated values and unnecessary new CSS variables.
+
+## 2. Create a clear surface and elevation system
+
+Use a restrained elevation scale consistent with Mavly's existing theme.
+
+For example, establish reusable treatments for:
+
+- Base page surfaces.
+- Subtle inset surfaces.
+- Standard cards and panels.
+- Elevated menus and floating elements.
+- Interactive buttons.
+- Modals and overlays.
+
+Use the actual theme colours to derive suitable shadow pairs.
+
+Do not prescribe new surface colours merely to make the Neumorphic effect more visible.
+
+Avoid low-contrast elements that become indistinguishable from their backgrounds.
+
+## 3. Standardise typography
+
+Review typography throughout the site.
+
+Ensure that similar types of content use consistent:
+
+- Font families.
+- Font weights.
+- Heading hierarchy.
+- Body-text sizes.
+- Line heights.
+- Letter spacing.
+- Text colours.
+- Maximum readable line lengths.
+
+Page-specific typography may vary according to its role, but it must remain part of the same design system.
+
+Do not introduce unrelated fonts or styling conventions on individual pages.
+
+## 4. Create reusable component variants
+
+Where existing architecture allows, standardise the visual treatment of shared components.
+
+Useful candidates include:
+
+- Primary and secondary buttons.
+- Tertiary and text buttons.
+- Icon buttons.
+- Links.
+- Cards and panels.
+- Form fields and labels.
+- Select menus.
+- Checkboxes and switches.
+- Tabs and segmented controls.
+- Accordions.
+- Tooltips.
+- Popovers.
+- Dialogs and modals.
+- Loading indicators.
+- Toast notifications.
+
+Use shared components and design tokens where practical.
+
+Do not create a separate, visually different button implementation for every page.
+
+Do not force every card or section to look identical. Different components can serve different purposes while still following the same spacing, typography, elevation, and interaction conventions.
+
+## 5. Preserve page-specific structure
+
+Consistency does not mean that every page must use the same layout.
+
+The homepage can remain marketing-focused. The login page can remain authentication-focused. The editor can remain workspace-focused.
+
+Standardise the shared visual language, component behaviour, and motion system without damaging the specific workflows of those pages.
+
+Do not turn the entire application into one enormous layout or a collection of identical cards.
+
+---
+
+# PHASE 3 — STANDARDISE EVERY BUTTON AND CLICKABLE CONTROL
+
+This is one of the highest-priority requirements.
+
+Audit every actual button and interactive control across every existing page.
+
+The current application frequently lacks meaningful visual feedback when users click controls.
+
+Fix this systematically.
+
+## 1. Consistent button variants
+
+Standardise button appearances based on their purpose.
+
+Use existing theme tokens to establish consistent styles for:
+
+- Primary actions.
+- Secondary actions.
+- Tertiary actions.
+- Text buttons.
+- Icon-only buttons.
+- Destructive actions, where applicable.
+- Disabled actions.
+- Loading states.
+
+Buttons with equivalent purposes must use equivalent visual treatments across the application.
+
+Preserve any established provider-brand styling where required, such as the current Google and GitHub authentication buttons.
+
+Do not force every button into the same visual appearance if its semantic purpose requires a different treatment.
+
+## 2. Hover animation
+
+Every enabled interactive button should respond appropriately to pointer hover on devices that support hover.
+
+Use a subtle, consistent combination of suitable effects, such as:
+
+- Small elevation changes.
+- Soft shadow transitions.
+- Slight background or border adjustments using existing tokens.
+- Subtle icon movement where it improves clarity.
+- Smooth transitions between normal and hover states.
+
+Hover effects should communicate interactivity, not distract the user.
+
+Do not make buttons jump, rotate aggressively, glow excessively, or move far from their original positions.
+
+Do not rely on hover alone to communicate important information.
+
+## 3. Pressed and click feedback
+
+Every interactive button must have a clear pressed or active state.
+
+When a user clicks or taps a button:
+
+- Provide immediate visual feedback.
+- Apply an appropriate small press-in or tactile effect.
+- Transition naturally into the correct interaction state.
+- Preserve the button's layout and alignment.
+- Avoid delaying the button's actual action for the sake of animation.
+
+Use the refined Neumorphic treatment where appropriate, such as subtly reducing elevation while a button is pressed.
+
+A small ripple effect may be used only if it matches the existing design system and can be implemented without unnecessary complexity. Do not add a distracting ripple to every element merely for consistency.
+
+**The click animation must supplement the real action, not replace it.**
+
+If a button navigates to another page, the navigation must still work normally.
+
+If a button submits a form, the existing form submission must continue.
+
+If a button opens a menu, the menu must actually open.
+
+If a button saves or updates something, preserve the existing operation.
+
+Never replace real functionality with an animation-only click handler.
+
+## 4. Keyboard and focus states
+
+Every interactive control must have a visible keyboard-focus state.
+
+Use a treatment compatible with the existing theme.
+
+Support expected keyboard activation behaviour.
+
+Do not suppress focus outlines without providing an accessible replacement.
+
+Ensure that Neumorphic shadows do not make focused controls indistinguishable from surrounding surfaces.
+
+## 5. Disabled and loading states
+
+Use existing state information to represent disabled or loading controls accurately.
+
+- A disabled control must not appear active.
+- A loading control should provide appropriate feedback.
+- Loading indicators must not cause excessive layout shifts.
+- Repeated clicks should not trigger unintended duplicate actions when the existing operation already guards against them.
+
+Do not introduce fake loading states or invent new data operations.
+
+Do not alter backend requests or business logic to add these visual treatments.
+
+## 6. Do not forget non-button controls
+
+Audit interactive links, navigation items, icon buttons, menu triggers, accordion questions, tabs, checkboxes, switches, and other clickable elements.
+
+Give each control an appropriate visual feedback pattern.
+
+Do not indiscriminately attach button animation styles to every DOM element.
+
+Static text, decorative images, non-interactive cards, and other non-clickable elements should not suddenly behave like buttons.
+
+---
+
+# PHASE 4 — IMPLEMENT A CONSISTENT MOTION SYSTEM
+
+The current website feels static because many pages open without an entrance transition, sections appear without visual continuity, and buttons often lack interaction feedback.
+
+Create one coherent motion language and apply it throughout the frontend.
+
+## 1. Establish shared motion tokens
+
+Inspect whether the project already has motion tokens or transition conventions.
+
+Reuse them where available.
+
+If they do not exist, define a small, consistent set of reusable timing and easing values for:
+
+- Micro-interactions.
+- Button and control transitions.
+- Dropdown and accordion transitions.
+- Card and panel transitions.
+- Page entrance transitions.
+- Section reveal animations.
+
+As starting guidance, short control interactions may take approximately 150–250 milliseconds, and page or section entrances may take approximately 300–500 milliseconds. Adapt these values to the existing application and the actual interaction.
+
+Do not make every transition use an identical duration when different interactions require different behaviour.
+
+Prefer smooth, restrained easing over abrupt movement or excessive bouncing.
+
+Avoid exaggerated spring effects unless a specific component genuinely benefits from them.
+
+## 2. Animate every existing page on entry
+
+Every applicable page should have a consistent, subtle entry animation when it is first displayed through navigation.
+
+Possible treatments include:
+
+- A small opacity transition.
+- A slight upward movement of the main page container.
+- A restrained reveal of the primary content.
+- A subtle transition of the existing navigation or page header.
+
+Keep the animation short and unobtrusive.
+
+The user should understand the page immediately.
+
+Do not make visitors wait for the entire page to animate before they can interact.
+
+Avoid large zooms, aggressive sliding, page spinning, or long cinematic introductions.
+
+### Important route-transition requirements
+
+- Preserve the current routing behaviour.
+- Reuse the existing routing and animation infrastructure.
+- Do not change protected-route behaviour or authentication redirects.
+- Do not force every route to reload.
+- Do not introduce a blocking animation between every navigation action.
+- Avoid an unstyled flash or visible blank page during route changes.
+- Keep route transitions graceful even when the destination loads quickly.
+
+If the existing routing system supports safe client-side page transitions, implement them using its conventions.
+
+If some routes or framework limitations do not support a particular transition, use the best compatible frontend treatment rather than introducing a fragile workaround.
+
+## 3. Animate content sections appropriately
+
+Review the sections on every existing page.
+
+Use consistent section entrance animations where they improve readability.
+
+Suitable patterns may include:
+
+- Fade-in with slight upward movement.
+- Subtle staged reveal of related content.
+- Small staggered transitions between a section heading and its content.
+- Gentle reveals as content enters the viewport.
+
+Do not animate every text line, card, icon, and decorative detail independently.
+
+Group related elements logically.
+
+Use a restrained stagger only where it genuinely improves the presentation.
+
+### Avoid repeated scrolling effects
+
+- Do not repeatedly replay an entrance animation every time the user scrolls a few pixels.
+- Do not hide essential content until an animation finishes.
+- Do not cause sections to jump in height.
+- Do not disrupt scrolling.
+- Do not create sticky or parallax effects without a clear purpose.
+
+Prefer a simple and predictable reveal pattern.
+
+## 4. Animate interactive components
+
+Audit component-level interactions across the site.
+
+Where applicable, add or refine animations for:
+
+- Accordions opening and closing.
+- Dropdowns appearing and disappearing.
+- Tabs switching content.
+- Dialogs and modals opening and closing.
+- Popovers appearing and dismissing.
+- Tooltips appearing.
+- Sidebar or navigation expansion.
+- Form submission feedback.
+- Loading and empty-state transitions.
+- Toast notifications appearing and disappearing.
+- Cards changing selected state.
+- Switches and checkboxes toggling.
+- Existing builder controls changing state.
+
+These animations must correspond to genuine component state.
+
+Do not create fake interactions for components that currently serve a different purpose.
+
+Preserve their original functionality and state-management behaviour.
+
+## 5. Preserve animation responsiveness
+
+All transitions must be compatible with rapid user interaction.
+
+For example, if a user quickly opens and closes an accordion, the component should still settle into the correct state.
+
+If navigation changes while an entrance animation is running, the application must remain functional.
+
+If an animation is interrupted, the control must not become stuck in a visually incorrect state.
+
+Use the component's existing state as the source of truth.
+
+---
+
+# PHASE 5 — PREMIUM NEUMORPHISM WITHOUT OVERDESIGN
+
+Apply the existing theme's Soft UI / Neumorphic visual language consistently where it makes sense.
+
+## Buttons
+
+Use subtle depth in normal states, an appropriate elevated hover state, and a tactile pressed state.
+
+## Cards and panels
+
+Use consistent shadows, neutral surfaces, and clear boundaries.
+
+Avoid giving every card an identical exaggerated shadow or making unrelated cards appear physically raised for no reason.
+
+## Inputs and form controls
+
+Use restrained inset or raised surfaces where appropriate.
+
+Preserve clear borders, labels, validation messages, and focus indicators.
+
+## Menus, dropdowns, and modals
+
+Use suitable elevation to separate floating components from the page.
+
+Do not let the shadows obscure text or create unnecessary contrast problems.
+
+## Navigation
+
+Keep navigation items consistent, with clear active, hover, focus, and expanded states.
+
+Avoid applying card-like shadows to every navigation link.
+
+## Overall treatment
+
+Use depth to establish hierarchy, not to decorate everything.
+
+Do not create a plastic-looking UI with excessive highlights, dark borders, stacked shadows, or deep inset effects.
+
+Maintain clear contrast and sufficient visual separation.
+
+The result must look premium because the system is coherent, not because every component has a visible effect.
+
+---
+
+# PHASE 6 — FIX VISUAL INCONSISTENCIES THROUGHOUT THE SITE
+
+Audit each page and section and correct the inconsistencies found.
+
+Check for:
+
+- Mismatched page backgrounds.
+- Different heading sizes for equivalent roles.
+- Inconsistent spacing between similar sections.
+- Buttons with unrelated heights and border radii.
+- Cards with different shadow styles despite having the same purpose.
+- Inconsistent border thicknesses.
+- Irregular content widths.
+- Misaligned icons.
+- Different hover effects for similar controls.
+- Missing focus or pressed states.
+- Sections with unnecessary decorative elements.
+- Poor responsive spacing.
+- Components that look unrelated to the existing Mavly identity.
+- Unnecessary duplicate UI patterns.
+- Global CSS rules that cause unrelated components to behave unpredictably.
+
+Correct these issues using the shared design system.
+
+Do not force every page into the same layout or remove purposeful differences between the homepage, login page, dashboard, editor, and settings.
+
+The objective is a consistent brand system and interaction language, not identical pages.
+
+---
+
+# PHASE 7 — ICONS, MICRO-INTERACTIONS, AND SMALL DETAILS
+
+Small inconsistencies often make a website feel unfinished.
+
+Audit and standardise:
+
+- Icon size and alignment.
+- Spacing between icons and labels.
+- Icon-button dimensions.
+- Menu and chevron animations.
+- Button label alignment.
+- Link hover states.
+- Input focus transitions.
+- Inline validation messages.
+- Toast positioning and motion.
+- Loading-indicator placement.
+- Card border treatment.
+- Focus and active-state visibility.
+
+Use the existing icon library wherever possible.
+
+Do not introduce miscellaneous icon styles from unrelated libraries.
+
+Do not add arbitrary emoji or decorative symbols to professional product controls.
+
+Keep iconography consistent with the current application.
+
+Make only changes that improve clarity, consistency, responsiveness, or perceived quality.
+
+---
+
+# PHASE 8 — PRESERVE ACTUAL PRODUCT FUNCTIONALITY
+
+This is essential.
+
+The UI transformation must not break existing application flows.
+
+Preserve:
+
+- All existing routes and destinations.
+- Google and GitHub authentication.
+- Existing login and redirect behaviour.
+- Forms and their submission behaviour.
+- The current website builder and editor.
+- Current project and dashboard functionality.
+- Existing menus and navigation.
+- Pricing and FAQ interactions.
+- Existing data-display behaviour.
+- Existing validation and error handling.
+- Existing loading and success states.
+- All current product features.
+
+Do not rewrite business logic to make animations easier.
+
+Do not replace functional components with static demonstrations.
+
+Do not add fake buttons, non-functional controls, misleading success messages, or invented product capabilities.
+
+If an existing control lacks a functional action, do not invent a new backend operation. Improve its visual treatment if appropriate, but report the missing functionality separately.
+
+The task is to improve the existing product experience without changing what the product does.
+
+---
+
+# PHASE 9 — RESPONSIVENESS ACROSS ALL PAGES
+
+Inspect every existing page across representative desktop, tablet, and mobile viewports.
+
+Use the existing responsive breakpoints where possible.
+
+Test representative widths around:
+
+- 360px.
+- 390px.
+- 768px.
+- 1024px.
+- 1440px.
+
+These are test targets, not a requirement to hardcode the entire design to exact pixel widths.
+
+Verify:
+
+- Navigation remains functional.
+- Buttons remain accessible and appropriately sized.
+- Cards and panels fit the screen.
+- Typography wraps naturally.
+- Forms remain usable.
+- Dropdowns and modals stay within the viewport.
+- Section animations do not cause overflow.
+- Page transitions do not flash or reveal broken layouts.
+- Touch interactions do not depend on hover.
+- Responsive controls retain the correct active states.
+
+Do not simply scale down desktop styles. Preserve the purpose and hierarchy of each page on smaller screens.
+
+---
+
+# PHASE 10 — ACCESSIBILITY AND REDUCED MOTION
+
+Premium animation must not reduce accessibility.
+
+## Accessibility requirements
+
+- Use semantic HTML and existing accessible components.
+- Preserve keyboard navigation.
+- Keep focus indicators visible.
+- Maintain appropriate text and control contrast.
+- Provide accessible labels for icon-only buttons.
+- Preserve form labels and validation announcements.
+- Do not communicate important states through colour alone.
+- Keep controls understandable to assistive technologies.
+- Avoid interactions that require a pointer when a keyboard equivalent should exist.
+
+## Reduced-motion support
+
+Respect the user's `prefers-reduced-motion` preference throughout the application.
+
+When reduced motion is enabled:
+
+- Disable or reduce large page and section movements.
+- Avoid continuous decorative animation.
+- Reduce or remove staggered entrance effects.
+- Preserve meaningful state feedback.
+- Keep essential content visible.
+- Ensure every control remains fully functional.
+
+Do not disable accessibility preferences just to preserve the visual design.
+
+---
+
+# PHASE 11 — PERFORMANCE AND MAINTAINABILITY
+
+The entire transformation must remain lightweight.
+
+Prefer:
+
+- CSS transitions for simple state changes.
+- CSS transforms and opacity for motion.
+- Existing animation libraries already installed in the project.
+- Reusable component variants.
+- Shared design tokens.
+- Small, predictable frontend state transitions.
+
+Avoid:
+
+- Installing multiple animation libraries.
+- Animating expensive layout properties unnecessarily.
+- Constant JavaScript loops for simple animations.
+- Repeatedly measuring the layout during animation.
+- Excessive blur, filter, or shadow animations.
+- Duplicate global CSS rules.
+- Overly complicated animation abstractions.
+- Rewriting the application structure unnecessarily.
+
+Do not allow animation to degrade scrolling, input responsiveness, or the performance of the existing builder and editor.
+
+Keep new code readable, component-focused, and compatible with the existing coding conventions.
+
+---
+
+# PHASE 12 — STRICT FRONTEND-ONLY BOUNDARY
+
+This requirement is absolute.
+
+## Allowed changes
+
+- Existing frontend page components.
+- Shared frontend UI components.
+- Component-specific styles.
+- Existing design tokens, where a safe frontend-only adjustment is necessary.
+- Frontend interaction states.
+- Frontend animation utilities.
+- Page transitions.
+- Responsive styling.
+- Existing client-side routing transitions, provided the routing semantics remain unchanged.
+- Frontend accessibility fixes.
+
+## Forbidden changes
+
+Do not modify:
+
+- Backend logic.
+- API routes or request handlers.
+- Server-side functions or server business logic.
+- Database schemas or queries.
+- Migrations or stored data.
+- Authentication implementation.
+- Authorisation logic.
+- OAuth configuration or credentials.
+- Session handling.
+- Environment variables or environment files.
+- Third-party integrations.
+- Existing agent execution infrastructure.
+- Subscription or payment logic.
+- Existing business rules.
+- Deployment configuration.
+- Unrelated backend tests or infrastructure.
+
+Do not introduce a new API to support a visual effect.
+
+Do not change the application's framework or routing architecture.
+
+Do not make destructive project-wide refactors.
+
+Do not replace real application functionality with mock data.
+
+Keep the changes narrowly focused on the existing frontend UI, interactions, and motion.
+
+---
+
+# PHASE 13 — COMPREHENSIVE TESTING AND VERIFICATION
+
+Do not declare the transformation complete just because the frontend compiles.
+
+Inspect the actual rendered application.
+
+## 1. Route-by-route visual audit
+
+Open every discovered route and verify its main sections and shared components.
+
+Check for:
+
+- Consistent theme and typography.
+- Correct button variants.
+- Standardised surface treatments.
+- Appropriate page and section entrances.
+- Consistent hover, focus, and pressed states.
+- Proper spacing and alignment.
+- No broken animations.
+- No missing styles.
+- No regressions in unique page layouts.
+
+Do not inspect only `/home` and assume every other page inherits the correct design.
+
+## 2. Interaction audit
+
+Test every visible interactive control that is part of the scope.
+
+Verify:
+
+- Buttons respond to hover and press.
+- Links navigate to their correct destinations.
+- Dropdowns open and close.
+- Accordions expand and collapse.
+- Modals open and dismiss correctly.
+- Inputs and selects remain usable.
+- Tabs switch correctly.
+- Forms preserve their real submission behaviour.
+- Existing authentication buttons continue to work.
+- Loading and disabled states remain accurate.
+- Rapid interactions do not leave controls stuck.
+- Animation never prevents the actual action.
+
+Use automated browser tests or existing UI-testing tools where available. Otherwise, perform a systematic manual audit of the available pages and controls.
+
+Do not claim that every button has been tested unless it has actually been tested.
+
+## 3. Responsive audit
+
+Check the main pages and shared components at desktop, tablet, and mobile widths.
+
+Confirm that animations do not cause layout shifts, clipping, horizontal overflow, or inaccessible controls.
+
+## 4. Accessibility audit
+
+Check keyboard navigation, visible focus, reduced-motion behaviour, and readable contrast.
+
+Run available accessibility checks where appropriate.
+
+## 5. Technical checks
+
+Run the relevant existing checks supported by the repository:
+
+- Type checking.
+- Linting.
+- Production build.
+- Existing frontend tests.
+- Relevant browser or visual tests.
+
+Fix issues introduced by the transformation.
+
+Do not bypass existing checks simply to obtain a green result.
+
+Do not claim a test has passed unless it was actually executed.
+
+## 6. Final diff audit
+
+Before finishing, inspect the changed files.
+
+Confirm that:
+
+- Changes are limited to the intended frontend work.
+- No backend or server files were modified.
+- No environment configuration was changed.
+- No authentication implementation was altered.
+- No integration or business logic was touched.
+- No unrelated routes were removed or changed.
+- No unnecessary dependencies were introduced.
+
+If an existing project limitation prevents complete verification, report it accurately.
+
+---
+
+# DEFINITION OF DONE
+
+The transformation is complete only when all applicable conditions are satisfied:
+
+- [ ] Every existing frontend page has been inspected.
+- [ ] The current colour palette and design tokens were inspected first.
+- [ ] No new colour palette was imposed.
+- [ ] The existing Mavly design system is used consistently throughout the application.
+- [ ] Awkward or inconsistent components have been corrected.
+- [ ] Shared component styling has been standardised appropriately.
+- [ ] Neumorphic / Soft UI effects are restrained, consistent, and accessible.
+- [ ] Every enabled button has an appropriate hover, pressed, and focus state.
+- [ ] Interactive controls provide immediate and meaningful feedback.
+- [ ] Existing button actions remain functional.
+- [ ] All applicable pages have consistent entrance animations.
+- [ ] Sections use consistent, restrained reveal animations where appropriate.
+- [ ] Accordions, dropdowns, menus, tabs, dialogs, and other interactive components have appropriate transitions.
+- [ ] Loading, disabled, selected, and expanded states remain accurate.
+- [ ] Responsive layouts work across the existing application's pages.
+- [ ] Reduced-motion preferences are respected.
+- [ ] No unnecessary animation causes layout shifts or performance problems.
+- [ ] Existing routes and product functionality remain intact.
+- [ ] No backend, API, database, authentication, environment, integration, or business-logic changes have been made.
+- [ ] Actual verification results and any remaining issues have been reported.
+
+---
+
+# FINAL EXECUTION INSTRUCTION
+
+First inspect the existing repository, enumerate its routes and reusable components, and inspect the actual Mavly theme.
+
+Then systematically implement the entire frontend consistency and motion transformation.
+
+Do not stop after creating a plan, updating a single page, adding a few hover transitions, or generating a visual mockup.
+
+Work through the existing application page by page and component by component. Build a consistent design system, apply it wherever needed, and verify the actual interactive behaviour.
+
+Preserve the current product's functionality. Do not touch the backend, authentication configuration, environment variables, integrations, or business logic.
+
+**The final result should feel like one exceptionally polished Mavly product: consistent visual design, refined Soft UI surfaces, tactile interactions, smooth page transitions, meaningful button feedback, responsive layouts, and accessible motion throughout the existing frontend.**
+
+When finished, provide a concise implementation report containing:
+
+1. The routes and page families inspected.
+2. The shared components and design tokens standardised.
+3. The page transitions and interaction animations implemented.
+4. The major visual inconsistencies corrected.
+5. The testing performed and actual results.
+6. Confirmation that the changes remained frontend-only.
+7. Any remaining issues or controls that could not be verified.
+
+Do not claim the entire website is complete if some existing routes or interactive components remain unaudited. Report the actual state honestly.

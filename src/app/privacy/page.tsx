@@ -5,11 +5,11 @@ import { ArrowLeft } from "lucide-react";
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#faf9f6] text-gray-900 font-sans selection:bg-neutral-900 selection:text-white">
+    <div className="min-h-screen bg-[#faf9f6] text-gray-900 font-sans selection:bg-neutral-900 selection:text-white mavly-page-enter">
       <header className="border-b border-black/[0.05] bg-white/70 backdrop-blur-md sticky top-0 z-20">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/home" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center">
+          <Link href="/home" className="flex items-center gap-2.5 group select-none">
+            <div className="w-8 h-8 rounded-xl overflow-hidden bg-white shadow-xs p-0.5 border border-black/[0.08] flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95">
               <Image
                 src="/logo/Mavly.png"
                 alt="Mavly Logo"
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
           <Link
             href="/home"
-            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-black text-white hover:bg-neutral-800 transition-colors flex items-center gap-1.5"
+            className="mavly-btn-secondary px-3.5 py-1.5 text-xs font-semibold"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Home</span>
