@@ -38,7 +38,7 @@ function LoginForm() {
   }, [initialProvider]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans selection:bg-neutral-900 selection:text-white mavly-page-enter">
+    <div className="min-h-screen flex flex-col justify-between bg-[#faf9f6] text-gray-950 font-sans mavly-page-enter">
       {/* ── Top Navigation Row ── */}
       <header className="w-full border-b border-black/[0.05] bg-white/70 backdrop-blur-md sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">

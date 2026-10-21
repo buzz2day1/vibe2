@@ -18,7 +18,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   // Group A (Upper-Left Strip: Images 01 to 09)
   {
     id: "img-01",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.05%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.08.05_PM_optimized_100.png",
     label: "Artisanal Bakery & Bakehouse",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
@@ -26,7 +26,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-02",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.47%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.09.47_PM_optimized_100.png",
     label: "Minimalist Stationery & Goods",
     aspectClass: "aspect-[4/3]",
     widthClass: "w-[210px] sm:w-[240px] lg:w-[270px]",
@@ -34,7 +34,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-03",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.34%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.05.34_PM_optimized_100.png",
     label: "Strategic Advisory & Consulting",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
@@ -42,7 +42,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-04",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.06%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.07.06_PM_optimized_100.png",
     label: "Sprout Botanical Boutique",
     aspectClass: "aspect-[16/11]",
     widthClass: "w-[220px] sm:w-[260px] lg:w-[280px]",
@@ -50,7 +50,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-05",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.14%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.09.14_PM_optimized_100.png",
     label: "Certified Auto Care & Service",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[260px] sm:w-[300px] lg:w-[330px]",
@@ -58,7 +58,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-06",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.45%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.10.45_PM_optimized_100.png",
     label: "Roy Pratt Fitness Studio",
     aspectClass: "aspect-[4/3]",
     widthClass: "w-[210px] sm:w-[250px] lg:w-[275px]",
@@ -66,7 +66,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-07",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.12.06%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.12.06_PM_optimized_100.png",
     label: "Autonomous Electric Mobility",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
@@ -74,7 +74,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-08",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.29%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.06.29_PM_optimized_100.png",
     label: "La Perla Luxury Architecture",
     aspectClass: "aspect-[16/11]",
     widthClass: "w-[230px] sm:w-[270px] lg:w-[295px]",
@@ -82,7 +82,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-09",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.06.12%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.06.12_PM_optimized_100.png",
     label: "Nimbus Commute & Impact Transit",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
@@ -92,7 +92,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   // Group B (Bottom-Right Strip: Images 10 to 19)
   {
     id: "img-10",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.04%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.10.04_PM_optimized_100.png",
     label: "Enterprise Tech Consulting",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[250px] sm:w-[290px] lg:w-[320px]",
@@ -100,7 +100,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-11",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.16%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.17.16_PM_optimized_100.png",
     label: "Next-Gen Fintech App",
     aspectClass: "aspect-[16/11]",
     widthClass: "w-[220px] sm:w-[260px] lg:w-[285px]",
@@ -108,7 +108,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-12",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.07.25%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.07.25_PM_optimized_100.png",
     label: "Creative Agency Case Studies",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[260px] sm:w-[300px] lg:w-[330px]",
@@ -116,7 +116,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-13",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.04.59%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.04.59_PM_optimized_100.png",
     label: "Serene Wellness & Spa Sanctuary",
     aspectClass: "aspect-[4/3]",
     widthClass: "w-[210px] sm:w-[245px] lg:w-[270px]",
@@ -124,7 +124,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-14",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.08.30%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.08.30_PM_optimized_100.png",
     label: "Independent Editorial Journal",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[240px] sm:w-[280px] lg:w-[310px]",
@@ -132,7 +132,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-15",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.17.00%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.17.00_PM_optimized_100.png",
     label: "Developer Cloud Tooling Platform",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[250px] sm:w-[290px] lg:w-[325px]",
@@ -140,7 +140,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-16",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.10.33%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.10.33_PM_optimized_100.png",
     label: "Gourmet Tasting Room & Cellar",
     aspectClass: "aspect-[16/11]",
     widthClass: "w-[220px] sm:w-[260px] lg:w-[285px]",
@@ -148,7 +148,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-17",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.09.29%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.09.29_PM_optimized_100.png",
     label: "Contemporary Fashion Lookbook",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[260px] sm:w-[305px] lg:w-[335px]",
@@ -156,7 +156,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-18",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.16%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.05.16_PM_optimized_100.png",
     label: "Sustainable Energy Dashboard",
     aspectClass: "aspect-[4/3]",
     widthClass: "w-[210px] sm:w-[245px] lg:w-[270px]",
@@ -164,7 +164,7 @@ export const HERO_SHOWCASE_ASSETS: ShowcaseAsset[] = [
   },
   {
     id: "img-19",
-    url: "https://ik.imagekit.io/2potcqor3/Screenshot%202026-10-21%20at%205.05.53%E2%80%AFPM.png",
+    url: "https://ik.imagekit.io/2potcqor3/Screenshot_2026-10-21_at_5.05.53_PM_optimized_100.png",
     label: "Brand Design & System Lab",
     aspectClass: "aspect-[16/10]",
     widthClass: "w-[240px] sm:w-[280px] lg:w-[315px]",
@@ -228,7 +228,7 @@ function HeroCard({
 
 export function HeroSection() {
   return (
-    <section className="relative pt-24 pb-20 sm:pt-32 sm:pb-28 md:pt-36 md:pb-36 overflow-hidden bg-[#faf9f6]/90 selection:bg-neutral-900 selection:text-white">
+    <section className="relative pt-24 pb-20 sm:pt-32 sm:pb-28 md:pt-36 md:pb-36 overflow-hidden bg-[#faf9f6]/90">
       {/* Ambient Radial Depth Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-gradient-to-b from-black/[0.02] to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
