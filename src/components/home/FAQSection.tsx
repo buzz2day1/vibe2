@@ -9,14 +9,11 @@ interface FAQItem {
 }
 
 export function FAQSection() {
-  // Open items state: item 0 open by default, supports toggling any question smoothly
-  const [openItems, setOpenItems] = useState<Record<number, boolean>>({ 0: true });
+  // Single reliable open index state (0 open by default, null when all closed, single-open accordion)
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (idx: number) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [idx]: !prev[idx],
-    }));
+    setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   const faqs: FAQItem[] = [
@@ -77,7 +74,7 @@ export function FAQSection() {
         {/* Accordion List */}
         <div className="space-y-3.5">
           {faqs.map((faq, idx) => {
-            const isOpen = Boolean(openItems[idx]);
+            const isOpen = openIndex === idx;
             const btnId = `faq-trigger-${idx}`;
             const panelId = `faq-panel-${idx}`;
 
