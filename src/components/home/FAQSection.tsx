@@ -9,11 +9,14 @@ interface FAQItem {
 }
 
 export function FAQSection() {
-  // Single-open accordion: starts with the first question (index 0) expanded to match reference
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Open items state: item 0 open by default, supports toggling any question smoothly
+  const [openItems, setOpenItems] = useState<Record<number, boolean>>({ 0: true });
 
   const toggleItem = (idx: number) => {
-    setOpenIndex((current) => (current === idx ? null : idx));
+    setOpenItems((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
   };
 
   const faqs: FAQItem[] = [
@@ -74,15 +77,14 @@ export function FAQSection() {
         {/* Accordion List */}
         <div className="space-y-3.5">
           {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
+            const isOpen = Boolean(openItems[idx]);
             const btnId = `faq-trigger-${idx}`;
             const panelId = `faq-panel-${idx}`;
 
             return (
               <div
                 key={idx}
-                onClick={() => toggleItem(idx)}
-                className={`rounded-2xl transition-all duration-200 overflow-hidden cursor-pointer select-none ${
+                className={`rounded-2xl transition-all duration-300 overflow-hidden ${
                   isOpen
                     ? "bg-[#faf9f6] border border-black/[0.14] shadow-[0_4px_16px_-2px_rgba(0,0,0,0.04)]"
                     : "bg-[#faf9f6] border border-black/[0.06] hover:border-black/[0.14] hover:shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]"
@@ -94,39 +96,38 @@ export function FAQSection() {
                     id={btnId}
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={(e) => {
-                      // Prevent duplicate trigger if container div also handles click
-                      e.stopPropagation();
-                      toggleItem(idx);
-                    }}
+                    onClick={() => toggleItem(idx)}
                     className="w-full py-5 px-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-gray-950 hover:text-neutral-700 active:bg-black/[0.02] transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-2xl"
                   >
                     <span className="pr-2">{faq.q}</span>
                     <div
                       aria-hidden="true"
-                      className={`p-1.5 sm:p-2 rounded-xl bg-white border transition-all duration-200 ease-out shrink-0 flex items-center justify-center motion-reduce:transition-none pointer-events-none shadow-xs ${
+                      className={`p-1.5 sm:p-2 rounded-xl bg-white border transition-all duration-300 ease-out shrink-0 flex items-center justify-center motion-reduce:transition-none pointer-events-none shadow-xs ${
                         isOpen
                           ? "rotate-180 text-gray-950 border-black/[0.16] shadow-sm"
                           : "rotate-0 text-gray-400 border-black/[0.08]"
                       }`}
                     >
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-4 h-4 transition-transform duration-300" />
                     </div>
                   </button>
                 </h3>
 
-                {/* Answer Content Panel - renders directly when open for 100% reliable display */}
-                {isOpen && (
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={btnId}
-                    onClick={(e) => e.stopPropagation()}
-                    className="px-6 pb-6 pt-1 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-black/[0.04] animate-in fade-in duration-150 cursor-default"
-                  >
-                    {faq.a}
+                {/* Animated Dropdown Answer Panel */}
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={btnId}
+                  data-open={isOpen ? "true" : "false"}
+                  data-state={isOpen ? "open" : "closed"}
+                  className="mavly-accordion-content"
+                >
+                  <div className="mavly-accordion-inner">
+                    <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-black/[0.04]">
+                      {faq.a}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
